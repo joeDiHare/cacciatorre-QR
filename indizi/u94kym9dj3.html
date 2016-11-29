@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<h1>Cacciatorre 2016</h1>
+<p></p>
+<div class="container">
+  <div id="loc_div"></div>
+  <div id="team_div"></div>
+</div>
+
+<p>5</p>
+<p><b>Per andare dove devi andare, vai li, dove devi andare.</b></p>
+<style>
+.container{
+  font-size: 15px;
+}
+</style>
+
+<script>
+function getQueryStringArray(){
+    var assoc=[];
+    var items = window.location.search.substring(1).split('&');
+    for(var j = 0; j < items.length; j++) {
+       var a = items[j].split('='); assoc[a[0]] = a[1];
+    }
+    return assoc;
+}
+var qs = getQueryStringArray();
+document.getElementById('loc_div').innerHTML ='Posizione Attuale: '+qs.loc.replace(/\+/g,' ');
+document.getElementById('team_div').innerHTML='Team: '+qs.team.replace(/\+/g,' ');
+</script>
