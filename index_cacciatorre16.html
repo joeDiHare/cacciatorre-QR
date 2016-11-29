@@ -2,6 +2,9 @@
 <meta charset="utf-8">
 <h1>Cacciatorre 2016</h1>
 <p><i>switcher</i></p>
+<div id="chart-container">
+  <p>Leaderboard</p>
+</div>
 <style>
 
 .land {
@@ -29,23 +32,65 @@ fill: #17a6ec;
   pointer-events: all;
 }
 
+.plotToolText{
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 <!-- <script src="jquery-csv.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+<script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
 
 
 <script>
 
-// read data from csv
-// var $ = jQuery = require('jquery');
-// require('./jquery.csv.js');
-// var csv_text = 'team_name,team_psw,curr_loc,next_loc,no_clue,REBEL,psw1,Villa,Bottazzi,2'
-// var data = $.csv.toObjects(csv_text)
-// console.log('csv: ' + csv_text)
-// console.log('data: ' + data)
+var spreadsheetId = "1oH-Y1GaCom4eNdGtu4Oqku7icpW7K-LVc-7Sg5DdB64",
+    url = "https://spreadsheets.google.com/feeds/list/" +
+          spreadsheetId +
+          "/od6/public/basic?alt=json";
+
+$.get({
+  url: url,
+  success: function(response) {
+    var data = response.feed.entry,
+        len = data.length,
+        i = 0,
+        parsedData = [];
+
+    for (i = 0; i < len; i++) {
+      parsedData.push({
+        label: data[i].title.$t,
+        value: data[i].content.$t.split(/[: ]+/).pop()
+      });
+    }
+    console.log("~~~");
+    console.log(data[0].title.$t);
+    console.log("~~~");
+    var output = data[0].content.$t.split(/[: ]+/).pop();
+    console.log(output);
+
+    new FusionCharts({
+      type: 'bar2d',
+      renderAt: 'chart-container',
+      width: '50%',
+      height: '600',
+      dataFormat: 'json',
+      dataSource: {
+        "chart": {
+          "caption": "Indizi completati per squadra",
+          "yAxisName": "Teams",
+          "numberPrefix": "#"
+        },
+      "data": parsedData
+      }
+}).render();
+  }
+});
+
 
 // Ask for team's password
 var team_psw = prompt("Enter your team password", "");
@@ -270,7 +315,7 @@ function findClueMatch(ind_code, team_psw){
       return all_matches[i];
     }
   }
-  console.log('matach not found in findClueMatch')
+  console.log('matach not found in findClueMatch()')
   return NaN
 }
 
@@ -281,35 +326,6 @@ function getQueryStringArray(){
        var a = items[j].split('='); assoc[a[0]] = a[1];
     }
     return assoc;
-}
-
-function switchIndTeams(ind_code, team_psw){
-    switch (ind_code) {
-      case '1':
-        var curr_loc = 'Villa+delle+Mimose'
-        switch (team_psw) {
-          case 'psw1':
-            url_next_ind = 'http://localhost:6888/indizi/loc1.html?loc='+curr_loc;
-            break;
-          case 'psw2':
-            url_next_ind = 'http://localhost:6888/indizi/loc2.html?loc='+curr_loc;
-            break;
-        }
-        break;
-      case '2':
-        var curr_loc = 'Parco+Bottazzi'
-        switch (team_psw) {
-          case 'psw1':
-            url_next_ind = 'http://localhost:6888/indizi/loc3.html?loc='+curr_loc;
-            break;
-          case 'psw2':
-            url_next_ind = 'http://localhost:6888/indizi/loc4.html?loc='+curr_loc;
-            break;
-        }
-        break;
-    }
-    var TEAM = 'REBEL' //to do: get teams/psw from json
-    return url_next_ind+'&team='+TEAM;
 }
 
 //point at which you want to determine redirection
@@ -325,7 +341,37 @@ if (qs.ind !== 'undefined' && qs.ind) {
                   '&loc=' + match_results[3]
   console.log('redirect to link: '+url_next_ind)
 
-   window.location.href = url_next_ind; //reroute
+// re-direct to clue
+  // window.location.href = url_next_ind; //reroute
 
  }
+
+ // function switchIndTeams(ind_code, team_psw){
+ //     switch (ind_code) {
+ //       case '1':
+ //         var curr_loc = 'Villa+delle+Mimose'
+ //         switch (team_psw) {
+ //           case 'psw1':
+ //             url_next_ind = 'http://localhost:6888/indizi/loc1.html?loc='+curr_loc;
+ //             break;
+ //           case 'psw2':
+ //             url_next_ind = 'http://localhost:6888/indizi/loc2.html?loc='+curr_loc;
+ //             break;
+ //         }
+ //         break;
+ //       case '2':
+ //         var curr_loc = 'Parco+Bottazzi'
+ //         switch (team_psw) {
+ //           case 'psw1':
+ //             url_next_ind = 'http://localhost:6888/indizi/loc3.html?loc='+curr_loc;
+ //             break;
+ //           case 'psw2':
+ //             url_next_ind = 'http://localhost:6888/indizi/loc4.html?loc='+curr_loc;
+ //             break;
+ //         }
+ //         break;
+ //     }
+ //     var TEAM = 'REBEL' //to do: get teams/psw from json
+ //     return url_next_ind+'&team='+TEAM;
+ // }
 </script>
