@@ -42,102 +42,15 @@ fill: #17a6ec;
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.1/dygraph-combined.js"></script>
 <!-- <script src="jquery-csv.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.0.0-alpha1.js"></script>
 <script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
-
 
 <script>
 
-var spreadsheetId = "1oH-Y1GaCom4eNdGtu4Oqku7icpW7K-LVc-7Sg5DdB64",
-    url = "https://spreadsheets.google.com/feeds/list/" +
-          spreadsheetId +
-          "/od6/public/basic?alt=json";
-
-$.get({
-  url: url,
-  success: function(response) {
-    var data = response.feed.entry,
-        len = data.length,
-        i = 0,
-        parsedData = [];
-
-    for (i = 0; i < len; i++) {
-      parsedData.push({
-        label: data[i].title.$t,
-        value: data[i].content.$t.split(/[: ]+/).pop()
-      });
-    }
-
-    FusionCharts.ready(function() {
-    var chart = new FusionCharts({
-        type: 'bar2d',
-        renderAt: 'chart-container',
-        width: '50%',
-        height: '700',
-        dataFormat: 'json',
-        dataSource: {
-          "chart": {
-        // caption configuration
-        "caption": "Indizi completati per squadra",
-        "captionFontBold": "0",
-        "captionFontSize": "20",
-
-        // x and y axes configuration
-        "xAxisName": "",
-        "xAxisNameFontSize": "18",
-        "xAxisNameFontBold": "0",
-        "yAxisName": "I n d i z i",
-        "yAxisNameFontSize": "18",
-        "yAxisNameFontBold": "0",
-        "showLimits": "0",
-
-        // general chart configuration
-        "baseFont": "Open Sans",
-        "paletteColors": "#2AA992",
-        "plotFillAlpha": "70",
-        "usePlotGradientColor": "0",
-        "numberPrefix": "#",
-        "numberSuffix": "",
-        "bgcolor": "#FFFFFF", //"#202C3D",
-        "bgalpha": "95",
-        "canvasbgalpha": "0",
-        "basefontcolor": "#202C3D", //#F7F3E7
-        "showAlternateHGridColor": "0",
-        "divlinealpha": "50",
-        "divlinedashed": "0",
-        "rotateyaxisname": "1",
-        "canvasbordercolor": "#FFFFFF", //"#FFF",
-        "canvasborderthickness": ".3",
-        "canvasborderalpha": "100",
-        "showValues": "0",
-        "plotSpacePercent": "12",
-        "showPlotBorder": "0",
-        "plotBorderColor": "#FFFFFF", //"#2AA992",
-        "plotBorderThickness": "1",
-        "labelFontSize": "15",
-        "outCnvBaseFontSize": "15",
-
-        // tooltip configuration
-        "toolTipBgColor": "#000",
-        "toolTipPadding": "12",
-        "toolTipBorderRadius": "3",
-        "toolTipBorderThickness": "1",
-        "toolTipBorderColor": "#000000",//"#ccc",
-        "toolTipBgAlpha": "0",//60
-        "plotToolText": "<div class='plotToolText'>$label ha completato $dataValue indizi</div>"
-        },
-      "data": parsedData
-      }
-    })
-    .render();
-  });
-}
-});
-
-
 // Ask for team's password
 var team_psw = prompt("Enter your team password", "");
-console.log('password inputted: ' + team_psw)
+// console.log('password inputted: ' + team_psw)
 
 all_matches = [
   ['qzmo','6xfu72yqju','Team_1','loc_clue_7','0t3sthvfby','loc_clue_1','1','7','1'],
@@ -354,11 +267,11 @@ all_matches = [
 function findClueMatch(ind_code, team_psw){
   for(i = 0; i < all_matches.length; i++) {
     if (all_matches[i][0] == team_psw && all_matches[i][1] == ind_code){
-      console.log(all_matches[i])
+      console.log('match found at: ' + all_matches[i])
       return all_matches[i];
     }
   }
-  console.log('matach not found in findClueMatch()')
+  console.log('match not found in findClueMatch()')
   return NaN
 }
 
@@ -371,23 +284,118 @@ function getQueryStringArray(){
     return assoc;
 }
 
-//point at which you want to determine redirection
-var qs = getQueryStringArray();
-var url_next_ind = '';
-if (qs.ind !== 'undefined' && qs.ind) {
-
-// url_next_ind = switchIndTeams(qs.ind, team_psw)
-match_results = findClueMatch(qs.ind, team_psw)
-url_next_ind = 'http://localhost:6888/indizi/' +
-                match_results[4] + '.html' +
-                '?team=' + match_results[2] +
-                '&loc=' + match_results[3]
-console.log('redirect to link: '+url_next_ind)
-
- // re-direct to clue
-// window.location.href = url_next_ind; //reroute
-
+ // REDIRECT TO CLUE IF EXISTs ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
+ var qs = getQueryStringArray();
+ var url_next_ind = '';
+ if (qs.ind !== 'undefined' && qs.ind) {
+   match_results = findClueMatch(qs.ind, team_psw)
+   if (match_results !== 'undefined' && match_results) {
+     // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
+     var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
+     var data = {
+      team_name: match_results[2],
+      ["indizio_"+match_results[6]]: "1"
+      };
+      $.ajax({
+        url: sheetsuUrl+'/team_name/'+match_results[2],
+        data: data,
+        dataType: 'json',
+        type: 'PATCH',
+        success: function(data) { console.log(data); },
+        error:   function(data) { console.log(data); } // handling error response
+      });
+      // REDIRECT TO CLUE ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
+     url_next_ind = 'http://localhost:6888/indizi/' + // for testing
+    // url_next_ind = 'http://www.guhu.website/indizi/' +   // for production
+                     match_results[4] + '.html' +
+                     '?team=' + match_results[2] +
+                     '&loc=' + match_results[3]
+     console.log('redirect to link: '+url_next_ind)
+     window.location.href = url_next_ind; // re-routing
+   }
  }
 
+ // READ FROM SPREADSHEET & DISPLAY CHART ~~ ~~ ~~ ~~ ~~ ~~ ~~
+ var spreadsheetId = "1hjM_5TLlXrg5Bi3VE3x7azqddlFmjHUgWsMmm5x9rNo"; //"1oH-Y1GaCom4eNdGtu4Oqku7icpW7K-LVc-7Sg5DdB64",
+ var url = "https://spreadsheets.google.com/feeds/list/" +
+           spreadsheetId +
+           "/od6/public/basic?alt=json";
+ $.get({
+   url: url,
+   success: function(response) {
+     var data = response.feed.entry,
+         len = data.length,
+         i = 0,
+         parsedData = [];
+     for (i = 0; i < len; i++) {
+       parsedData.push({
+         label: data[i].title.$t,
+         value: data[i].content.$t.split(/[: ]+/).pop() // get last element
+       });
+     }
+     FusionCharts.ready(function() {
+     var chart = new FusionCharts({
+         type: 'bar2d',
+         renderAt: 'chart-container',
+         width: '50%',
+         height: '700',
+         dataFormat: 'json',
+         dataSource: {
+           "chart": {
+         // caption configuration
+         "caption": "Indizi completati per squadra",
+         "captionFontBold": "0",
+         "captionFontSize": "20",
 
+         // x and y axes configuration
+         "xAxisName": "",
+         "xAxisNameFontSize": "18",
+         "xAxisNameFontBold": "0",
+         "yAxisName": "I n d i z i",
+         "yAxisNameFontSize": "18",
+         "yAxisNameFontBold": "0",
+         "showLimits": "0",
+
+         // general chart configuration
+         "baseFont": "Open Sans",
+         "paletteColors": "#2AA992",
+         "plotFillAlpha": "70",
+         "usePlotGradientColor": "0",
+         "numberPrefix": "#",
+         "numberSuffix": "",
+         "bgcolor": "#FFFFFF", //"#202C3D",
+         "bgalpha": "95",
+         "canvasbgalpha": "0",
+         "basefontcolor": "#202C3D", //#F7F3E7
+         "showAlternateHGridColor": "0",
+         "divlinealpha": "50",
+         "divlinedashed": "0",
+         "rotateyaxisname": "1",
+         "canvasbordercolor": "#FFFFFF", //"#FFF",
+         "canvasborderthickness": ".3",
+         "canvasborderalpha": "100",
+         "showValues": "0",
+         "plotSpacePercent": "12",
+         "showPlotBorder": "0",
+         "plotBorderColor": "#FFFFFF", //"#2AA992",
+         "plotBorderThickness": "1",
+         "labelFontSize": "15",
+         "outCnvBaseFontSize": "15",
+
+         // tooltip configuration
+         "toolTipBgColor": "#000",
+         "toolTipPadding": "12",
+         "toolTipBorderRadius": "3",
+         "toolTipBorderThickness": "1",
+         "toolTipBorderColor": "#000000",//"#ccc",
+         "toolTipBgAlpha": "0",//60
+         "plotToolText": "<div class='plotToolText'>$label ha completato $dataValue indizi</div>"
+         },
+       "data": parsedData
+       }
+     })
+     .render();
+   });
+ }
+ });
 </script>
