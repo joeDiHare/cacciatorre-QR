@@ -67,28 +67,71 @@ $.get({
         value: data[i].content.$t.split(/[: ]+/).pop()
       });
     }
-    console.log("~~~");
-    console.log(data[0].title.$t);
-    console.log("~~~");
-    var output = data[0].content.$t.split(/[: ]+/).pop();
-    console.log(output);
 
-    new FusionCharts({
-      type: 'bar2d',
-      renderAt: 'chart-container',
-      width: '50%',
-      height: '600',
-      dataFormat: 'json',
-      dataSource: {
-        "chart": {
-          "caption": "Indizi completati per squadra",
-          "yAxisName": "Teams",
-          "numberPrefix": "#"
+    FusionCharts.ready(function() {
+    var chart = new FusionCharts({
+        type: 'bar2d',
+        renderAt: 'chart-container',
+        width: '50%',
+        height: '700',
+        dataFormat: 'json',
+        dataSource: {
+          "chart": {
+        // caption configuration
+        "caption": "Indizi completati per squadra",
+        "captionFontBold": "0",
+        "captionFontSize": "20",
+
+        // x and y axes configuration
+        "xAxisName": "",
+        "xAxisNameFontSize": "18",
+        "xAxisNameFontBold": "0",
+        "yAxisName": "I n d i z i",
+        "yAxisNameFontSize": "18",
+        "yAxisNameFontBold": "0",
+        "showLimits": "0",
+
+        // general chart configuration
+        "baseFont": "Open Sans",
+        "paletteColors": "#2AA992",
+        "plotFillAlpha": "70",
+        "usePlotGradientColor": "0",
+        "numberPrefix": "#",
+        "numberSuffix": "",
+        "bgcolor": "#FFFFFF", //"#202C3D",
+        "bgalpha": "95",
+        "canvasbgalpha": "0",
+        "basefontcolor": "#202C3D", //#F7F3E7
+        "showAlternateHGridColor": "0",
+        "divlinealpha": "50",
+        "divlinedashed": "0",
+        "rotateyaxisname": "1",
+        "canvasbordercolor": "#FFFFFF", //"#FFF",
+        "canvasborderthickness": ".3",
+        "canvasborderalpha": "100",
+        "showValues": "0",
+        "plotSpacePercent": "12",
+        "showPlotBorder": "0",
+        "plotBorderColor": "#FFFFFF", //"#2AA992",
+        "plotBorderThickness": "1",
+        "labelFontSize": "15",
+        "outCnvBaseFontSize": "15",
+
+        // tooltip configuration
+        "toolTipBgColor": "#000",
+        "toolTipPadding": "12",
+        "toolTipBorderRadius": "3",
+        "toolTipBorderThickness": "1",
+        "toolTipBorderColor": "#000000",//"#ccc",
+        "toolTipBgAlpha": "0",//60
+        "plotToolText": "<div class='plotToolText'>$label ha completato $dataValue indizi</div>"
         },
       "data": parsedData
       }
-}).render();
-  }
+    })
+    .render();
+  });
+}
 });
 
 
@@ -333,45 +376,18 @@ var qs = getQueryStringArray();
 var url_next_ind = '';
 if (qs.ind !== 'undefined' && qs.ind) {
 
-  // url_next_ind = switchIndTeams(qs.ind, team_psw)
-  match_results = findClueMatch(qs.ind, team_psw)
-  url_next_ind = 'http://localhost:6888/indizi/' +
-                  match_results[4] + '.html' +
-                  '?team=' + match_results[2] +
-                  '&loc=' + match_results[3]
-  console.log('redirect to link: '+url_next_ind)
+// url_next_ind = switchIndTeams(qs.ind, team_psw)
+match_results = findClueMatch(qs.ind, team_psw)
+url_next_ind = 'http://localhost:6888/indizi/' +
+                match_results[4] + '.html' +
+                '?team=' + match_results[2] +
+                '&loc=' + match_results[3]
+console.log('redirect to link: '+url_next_ind)
 
-// re-direct to clue
-  // window.location.href = url_next_ind; //reroute
+ // re-direct to clue
+// window.location.href = url_next_ind; //reroute
 
  }
 
- // function switchIndTeams(ind_code, team_psw){
- //     switch (ind_code) {
- //       case '1':
- //         var curr_loc = 'Villa+delle+Mimose'
- //         switch (team_psw) {
- //           case 'psw1':
- //             url_next_ind = 'http://localhost:6888/indizi/loc1.html?loc='+curr_loc;
- //             break;
- //           case 'psw2':
- //             url_next_ind = 'http://localhost:6888/indizi/loc2.html?loc='+curr_loc;
- //             break;
- //         }
- //         break;
- //       case '2':
- //         var curr_loc = 'Parco+Bottazzi'
- //         switch (team_psw) {
- //           case 'psw1':
- //             url_next_ind = 'http://localhost:6888/indizi/loc3.html?loc='+curr_loc;
- //             break;
- //           case 'psw2':
- //             url_next_ind = 'http://localhost:6888/indizi/loc4.html?loc='+curr_loc;
- //             break;
- //         }
- //         break;
- //     }
- //     var TEAM = 'REBEL' //to do: get teams/psw from json
- //     return url_next_ind+'&team='+TEAM;
- // }
+
 </script>
