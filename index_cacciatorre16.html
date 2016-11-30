@@ -36,7 +36,7 @@
 <script>
 
 // Ask for team's password
-var team_psw = prompt("Enter your team password", "");
+var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra", "");
 // console.log('password inputted: ' + team_psw)
 
 all_matches = [
@@ -311,19 +311,19 @@ function adjustColumn(s){
         error:   function(data) { console.log(data); } // handling error response
       });
       // REDIRECT TO CLUE ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
-     url_next_ind = 'http://localhost:6888/indizi/' + // for testing
-    // url_next_ind = 'http://www.guhu.website/indizi/' +   // for production
-                     match_results[4] + '.html' +
-                     '?team=' + match_results[2] +
-                     '&loc=' + match_results[3]
-     console.log('redirect to link: '+url_next_ind)
+    //  url_next_ind = 'http://localhost:6888/indizi/' + // for testing
+    // // url_next_ind = 'http://www.guhu.website/indizi/' +   // for production
+    //                  match_results[4] + '.html' +
+    //                  '?team=' + match_results[2] +
+    //                  '&loc=' + match_results[3]
+    //  console.log('redirect to link: '+url_next_ind)
     //  window.location.href = url_next_ind; // re-routing
 
     document.getElementById('loc_div').innerHTML ='Posizione Attuale: '+match_results[3];
     document.getElementById('team_div').innerHTML='Team: '+match_results[2];
-    document.getElementById('clue').innerHTML='Indizio: '+adjustColumn(match_results[9]);
+    document.getElementById('clue').innerHTML='Indizio: '+ "<br />" +adjustColumn(match_results[9]);
   } else {
-    document.getElementById('clue').innerHTML='Error: password non riconosciuta, o location inesatta. \n Riprovare...');
+    document.getElementById('clue').innerHTML="Error: password non riconosciuta o location inesatta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
   }
  }
 
