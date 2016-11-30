@@ -9,8 +9,50 @@
 <div class="container_clue">
   <div id="clue"></div>
 </div>
+<!--  Add aiuti-->
+<h2>Serv na man?</h2>
+<p>Ricorda: Aiuto "HELP ME": -10 punti; Aiuto "SOLUTION": -20 punti</p>
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">HELP ME</button>
+<button id="myBtn2">SOLUTION</button>
+<!-- The Modal for Helpme-->
+<div id="myModalHelpme" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Aiuto HELP ME</h2>
+    </div>
+    <div class="modal-body">
+      <p>Se li vuoi andare</p>
+      <p>vai...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>10 verranno sottratti per questo aiuto alla fine della caccia.</h3>
+    </div>
+  </div>
+</div>
+<!-- The Modal for Solution -->
+<div id="myModalSolution" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Aiuto HELP ME</h2>
+    </div>
+    <div class="modal-body">
+      <p>Se li vuoi andare</p>
+      <p>vai...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>20 verranno sottratti per questo aiuto alla fine della caccia.</h3>
+    </div>
+  </div>
+</div>
 <!-- <p>Leaderboard</p> -->
 <div id="chart-container"></div>
+
+<!--  STYLE  -->
 <style>
 .info_clue{
     font-size: 15px;
@@ -27,6 +69,67 @@
   margin-top: 60px;
 }
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+.modal-body {padding: 2px 16px;}
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
 </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -350,7 +453,7 @@ function adjustColumn(s){
          type: 'bar2d',
          renderAt: 'chart-container',
          width: '100%',
-         height: '700',
+         height: '900',
          dataFormat: 'json',
          dataSource: {
            "chart": {
@@ -410,4 +513,24 @@ function adjustColumn(s){
    });
  }
  });
+</script>
+<script>
+// implement logic for buttons AIUTI
+var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
+var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+btn.onclick = function() { modalHelpme.style.display = "block"; }// When the user clicks the button, open the modal
+span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
+window.onclick = function(event) {// When the user clicks anywhere outside of the modal, close it
+    if (event.target == modalHelpme) { modalHelpme.style.display = "none";}
+	}
+// repeat for other button ('solution')
+var modalSolution = document.getElementById('myModalSolution');
+var btn2 = document.getElementById("myBtn2");
+btn2.onclick = function() { modalSolution.style.display = "block"; }
+var span2 = document.getElementsByClassName("close")[1];
+span2.onclick = function() { modalSolution.style.display = "none"; }
+window.onclick = function(event) {
+    if (event.target == modalSolution) { modalSolution.style.display = "none";}
+	}
 </script>
