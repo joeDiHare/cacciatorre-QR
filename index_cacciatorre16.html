@@ -10,11 +10,11 @@
   <div id="clue"></div>
 </div>
 <!--  Add aiuti-->
-<h2>Serv na man?</h2>
-<p>Ricorda: Aiuto "HELP ME": -10 punti; Aiuto "SOLUTION": -20 punti</p>
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">HELP ME</button>
-<button id="myBtn2">SOLUTION</button>
+<h4>Serv na man?</h4>
+<ul style="list-style-type:none">
+<li>Aiuto "HELP ME!": -10 punti: <button id="myBtn" class='btn'>HELP ME</button></li>
+<li>Aiuto "SOLUTION": -20 punti: <button id="myBtn2" class='btn'>SOLUTION</button></li>
+</ul>
 <!-- The Modal for Helpme-->
 <div id="myModalHelpme" class="modal">
   <!-- Modal content -->
@@ -110,6 +110,11 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+}
+.btn {
+  color: #2AA992;
+  font-size: 15px;
+  font-weight: bold;
 }
 .close:hover,
 .close:focus {
