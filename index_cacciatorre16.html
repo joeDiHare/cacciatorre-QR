@@ -72,14 +72,14 @@
   }
 .container_clue{
       font-size: 38px;
-      margin-top: 20px;
+      margin-top: 35px;
     }
 .plotToolText{
   font-size: 14px;
   letter-spacing: 1px;
 }
 #chart-container{
-  margin-top: 60px;
+  margin-top: 80px;
 }
 /* The Modal (background) */
 .modal {
@@ -150,7 +150,7 @@
 }
 .help-container{
   display: none; /* Hidden by default */
-  margin-top: 30px;
+  margin-top: 40px;
   float: center;
 }
 .close:hover,
@@ -191,7 +191,7 @@ h1{
     text-align: center;
     font-size: 40px;
     display: none; /* Hidden by default */
-    margin-top: 30px;
+    margin-top: 40px;
 }
 #clockdiv > div{
     padding: 10px;
@@ -244,50 +244,77 @@ var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:
  var qs = getQueryStringArray();
  var url_next_ind = '';
  if (qs.ind !== 'undefined' && qs.ind) {
-   match_results = findClueMatch(qs.ind, team_psw)
-   if (match_results !== 'undefined' && match_results) {
 
-     // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
-     updateSheet('1');
+   match_results = findClueMatch(qs.ind, team_psw);
 
-     document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
-     document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
-     document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
+   // check that previous clue has been completed
+   var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
+   var API_KEY    = 'vVMy5ukvxGRu6jrvpC5A';
+   var API_SECRET = 'EHcLf9fxyyy7iqCW63yEpBxqpNtwtMmYhnDRkTAF';
+   var prev_clue_completed = true;
+   $.ajax({
+      // url: sheetsuUrl + searchQuery,
+      url: sheetsuUrl + '/team_name/' + match_results[2],
+      headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
+      dataType: 'json',
+      type: 'GET',
+      success: function(data) {
+        prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
+        if (match_results !== 'undefined' && match_results && prev_clue_completed) {
 
-     // make AIUTI buttons visible and implement logic
-     var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
-     var btn = document.getElementById("myBtn"); // Get the button that opens the modal
-     var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
-     btn.onclick = function() {
-       modalHelpme.style.display = "block";
-       btn.style.backgroundColor = "#000"
-       document.getElementById("modalHelpme-body").innerHTML =
-                      '<br />'+adjustColumn(match_results[10])+'<br />';
-       notifyUseOfHelp('HelpMe');
-     }// When the user clicks the button, open the modal for aiuti
-     span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
-     window.onclick = function(event) { if (event.target == modalHelpme) { modalHelpme.style.display = "none";} }
-     // repeat for other button ('solution')
-     var modalSolution = document.getElementById('myModalSolution');
-     var btn2 = document.getElementById("myBtn2");
-     var span2 = document.getElementsByClassName("close")[1];
-     btn2.onclick = function() {
-       modalSolution.style.display = "block";
-       btn2.style.backgroundColor = "#000"
-       document.getElementById("modalSolution-body").innerHTML =
-                       '<br />'+match_results[3]+'<br />';
-       notifyUseOfHelp('Solution');
-     }
-     span2.onclick = function() { modalSolution.style.display = "none"; }
-     window.onclick = function(event) {if (event.target == modalSolution) { modalSolution.style.display = "none";}}
-     // make buttons visible
-     var help_container = document.getElementById('help-container');
-     help_container.style.display = "block";
-  } else {
-    document.getElementById('clue').innerHTML="Password non riconosciuta o location inesatta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
-  }
+          // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
+          updateSheet('1');
+
+          document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
+          document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
+          document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
+
+          // make AIUTI buttons visible and implement logic
+          var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
+          var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+          var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+          btn.onclick = function() {
+            modalHelpme.style.display = "block";
+            btn.style.backgroundColor = "#000"
+            document.getElementById("modalHelpme-body").innerHTML =
+                           '<br />'+adjustColumn(match_results[10])+'<br />';
+            notifyUseOfHelp('HelpMe');
+          }// When the user clicks the button, open the modal for aiuti
+          span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
+          window.onclick = function(event) { if (event.target == modalHelpme) { modalHelpme.style.display = "none";} }
+          // repeat for other button ('solution')
+          var modalSolution = document.getElementById('myModalSolution');
+          var btn2 = document.getElementById("myBtn2");
+          var span2 = document.getElementsByClassName("close")[1];
+          btn2.onclick = function() {
+            modalSolution.style.display = "block";
+            btn2.style.backgroundColor = "#000"
+            document.getElementById("modalSolution-body").innerHTML =
+                            '<br />'+match_results[3]+'<br />';
+            notifyUseOfHelp('Solution');
+          }
+          span2.onclick = function() { modalSolution.style.display = "none"; }
+          window.onclick = function(event) {if (event.target == modalSolution) { modalSolution.style.display = "none";}}
+          // make buttons visible
+          var help_container = document.getElementById('help-container');
+          help_container.style.display = "block";
+       } else {
+         if (prev_clue_completed==false){
+           document.getElementById('clue').innerHTML="POSTO SBAGLIATO! <br /> Questo luogo   non e' la soluzione all'indovinello precedente.";
+         } else{
+           document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
+         }
+       }
+
+        console.log('res: '+prev_clue_completed);},
+      error:   function(data) { prev_clue_completed = true;  console.log('error: '+data);} // handling error response
+    });
+
+console.log(match_results !== 'undefined' && match_results && prev_clue_completed)
+
  }
 
+ var timeout_chart = 400;
  setTimeout(function() {
  // READ FROM SPREADSHEET & DISPLAY CHART ~~ ~~ ~~ ~~ ~~ ~~ ~~
  var spreadsheetId = "1hjM_5TLlXrg5Bi3VE3x7azqddlFmjHUgWsMmm5x9rNo";
@@ -370,8 +397,8 @@ var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:
    });
  }
  });
- }, 100);
+ }, timeout_chart);
 
  // make timeout clock visible after charts
- setTimeout(function() { clockdiv.style.display = "block"; }, 300);
+ setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
 </script>
