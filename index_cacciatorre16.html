@@ -48,6 +48,21 @@
 </div>
 <!-- <p>Leaderboard</p> -->
 <div id="chart-container"></div>
+<!-- <p>remaning time:</p> -->
+<div id="clockdiv">
+  <div>
+    <span class="hours"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span class="minutes"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span class="seconds"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>
 
 <!--  STYLE  -->
 <style>
@@ -66,7 +81,6 @@
 #chart-container{
   margin-top: 60px;
 }
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -156,6 +170,53 @@
     background-color: #5cb85c;
     color: white;
 }
+body{
+  font-family: sans-serif;
+  text-align: center;
+}
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+  text-align: center;
+  /*background: #00ECB9;*/
+  font-family: sans-serif;
+}
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 40px;
+    display: none; /* Hidden by default */
+    margin-top: 30px;
+}
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+.smalltext{
+    padding-top: 5px;
+    font-size: 18px;
+}
+.team-div{
+  text-align: left;
+  font-size: 18px;
+}
+.loc-div {
+  text-align: right;
+  font-size: 18px;
+}
 </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -163,12 +224,8 @@
 <script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
 
 <script>
-
-// Ask for team's password
-var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
-// console.log('password inputted: ' + team_psw)
-
-all_matches = [
+function fetchData(){
+return [
 ['qzmo','0t3sthvfby','Team_1','loc_clue_1','u94kym9dj3','loc_clue_5','1','1','5',"5m3hj1e7ePar§n§a d§vrd eiod v§§i  e§ai ae§darn, v§vid§le§,od v§l eeai§n§a §de§ragcm16q1"],
 ['qzmo','u94kym9dj3','Team_1','loc_clue_5','dt20fpmrvf','loc_clue_6','2','5','6',"bvfdvb9qo§Ildrvdn§r§ cn §§oa§ise§ le,oqzedt§i§ on§s§iui  o'lan§svidsioaaiao§§en§ljx7kxt0s"],
 ['qzmo','dt20fpmrvf','Team_1','loc_clue_6','6xfu72yqju','loc_clue_7','3','6','7',"sri4uugdePa§rna dvrd e§iod§ vi  §eai§§ aed§arn, vvidle§,o§d §vl§ e§eaina §§de§rgdi3aapt"],
@@ -378,7 +435,14 @@ all_matches = [
 ['phg3','vhowtegapr','Team_30','loc_clue_2','0t3sthvfby','loc_clue_1','4','2','1',"r1n1lzj7oIld§rvd§§nr cn §oais§§§e l§e,oqz§edti§ o§nsiui§  o§'lansvidsioaa§§iaoenlzaz6ic3d"],
 ['phg3','0t3sthvfby','Team_30','loc_clue_1','dt20fpmrvf','loc_clue_6','5','1','6',"3nv5etadePar§na §dvrd §ei§o§d vi  eai a§§edar§n§, vvidl§§e,o§d vl ee§ai§n§a der6qvdudvb"],
 ['phg3','dt20fpmrvf','Team_30','loc_clue_6','fyae89br5i','loc_clue_3','6','6','3',"pfls1nwzoI§ldrvdnr §cn oaise §l§e,oqz§ed§ti §o§nsi§u§i§  o§'la§nsvidsioaaiaoe§n§lbu0lmod2"],
-['phg3','fyae89br5i','Team_30','loc_clue_3','0000000000','Ci si vede in Villa','7','3','8',"gfivp1sceParna§§§ §§dvrd eiod vi § eai§ ae§d§arn§, vv§idle,§§od vl§ eeaina §dere659h9tv"]]
+['phg3','fyae89br5i','Team_30','loc_clue_3','0000000000','Ci si vede in Villa','7','3','8',"gfivp1sceParna§§§ §§dvrd eiod vi § eai§ ae§d§arn§, vv§idle,§§od vl§ eeaina §dere659h9tv"]];
+}
+</script>
+<script>
+
+// Ask for team's password
+var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
+// console.log('password inputted: ' + team_psw)
 
 function findClueMatch(ind_code, team_psw){
   for(i = 0; i < all_matches.length; i++) {
@@ -418,6 +482,8 @@ function adjustColumn(s){
   return s1;
 }
 
+ // FETCH DATA
+ var all_matches = fetchData()
 
  // POPULATE CLUE IN HTML ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
  var qs = getQueryStringArray();
@@ -429,7 +495,9 @@ function adjustColumn(s){
      var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
      var data = {
       team_name: match_results[2],
-      ["indizio_"+match_results[6]]: "1"
+      ["indizio_"+match_results[6]]: "1",
+      api_key:'vVMy5ukvxGRu6jrvpC5A',
+      api_secret:'EHcLf9fxyyy7iqCW63yEpBxpqNtwtMmYhnDRkTAF'
       };
       $.ajax({
         url: sheetsuUrl+'/team_name/'+match_results[2],
@@ -448,19 +516,19 @@ function adjustColumn(s){
     //  console.log('redirect to link: '+url_next_ind)
     //  window.location.href = url_next_ind; // re-routing
 
-    document.getElementById('loc_div').innerHTML ='Posizione Attuale: '+match_results[3];
-    document.getElementById('team_div').innerHTML='Team: '+match_results[2];
+    document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
+    document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
     document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
 
-    // implement logic for buttons AIUTI
+    // make AIUTI buttons visible and implement logic
     var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
     var btn = document.getElementById("myBtn"); // Get the button that opens the modal
     var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
     btn.onclick = function() {
       modalHelpme.style.display = "block";
+      btn.style.backgroundColor = "#000"
       document.getElementById("modalHelpme-body").innerHTML =
                       '<br />'+match_results[3]+'<br />';
-      console.log('mi vedi qua?');
       notifyUseOfHelp('HelpMe');
       }// When the user clicks the button, open the modal
     span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
@@ -473,9 +541,9 @@ function adjustColumn(s){
     var span2 = document.getElementsByClassName("close")[1];
     btn2.onclick = function() {
       modalSolution.style.display = "block";
+      btn2.style.backgroundColor = "#000"
       document.getElementById("modalSolution-body").innerHTML =
                       '<br />'+match_results[3]+'<br />';
-      console.log('mi vedi?');
       notifyUseOfHelp('Solution');
       }
     span2.onclick = function() { modalSolution.style.display = "none"; }
@@ -486,7 +554,7 @@ function adjustColumn(s){
     var help_container = document.getElementById('help-container');
     help_container.style.display = "block";
   } else {
-    document.getElementById('clue').innerHTML="Error: password non riconosciuta o location inesatta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
+    document.getElementById('clue').innerHTML="Password non riconosciuta o location inesatta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
   }
  }
 
@@ -527,7 +595,7 @@ function adjustColumn(s){
          "xAxisNameFontSize": "18",
          "xAxisNameFontBold": "0",
          "yAxisName": "I n d i z i   R i s o l t i",
-         "yAxisNameFontSize": "18",
+         "yAxisNameFontSize": "25",
          "yAxisNameFontBold": "0",
          "setAdaptiveYMin": "1",
          "showLimits": "1",
@@ -556,8 +624,8 @@ function adjustColumn(s){
          "showPlotBorder": "0",
          "plotBorderColor": "#FFFFFF", //"#2AA992",
          "plotBorderThickness": "1",
-         "labelFontSize": "15",
-         "outCnvBaseFontSize": "15",
+         "labelFontSize": "30",
+         "outCnvBaseFontSize": "30",
          // tooltip configuration
          "toolTipBgColor": "#000",
          "toolTipPadding": "12",
@@ -576,11 +644,17 @@ function adjustColumn(s){
  });
  }, 100);
 
+ // make timeout clock visible after charts
+ setTimeout(function() { clockdiv.style.display = "block"; }, 300);
+
+
 function notifyUseOfHelp(help_type){
   var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
   var data = {
    team_name: match_results[2],
-   [help_type+'_'+match_results[6]]: "1"
+   [help_type+'_'+match_results[6]]: "1",
+   api_key:'vVMy5ukvxGRu6jrvpC5A',
+   api_secret:'EHcLf9fxyyy7iqCW63yEpBxpqNtwtMmYhnDRkTAF'
    };
   console.log(help_type+'_'+match_results[6]);
    $.ajax({
@@ -592,5 +666,48 @@ function notifyUseOfHelp(help_type){
      error:   function(data) { console.log(data); } // handling error response
    });
 }
+</script>
 
+<script>
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  // var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    // 'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  // var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    // daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+// var deadline = new Date(Date.parse(new Date()) + 2 * 60 * 60 * 1000);
+var deadline = 'December 27 2016 00:00:01 GMT+0100';
+initializeClock('clockdiv', deadline);
 </script>
