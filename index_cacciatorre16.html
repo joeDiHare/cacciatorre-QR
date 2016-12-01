@@ -10,11 +10,11 @@
   <div id="clue"></div>
 </div>
 <!--  Add aiuti-->
-<h4>Serv na man?</h4>
-<ul style="list-style-type:none">
-<li>Aiuto "HELP ME!": -10 punti: <button id="myBtn" class='btn'>HELP ME</button></li>
-<li>Aiuto "SOLUTION": -20 punti: <button id="myBtn2" class='btn'>SOLUTION</button></li>
-</ul>
+<div id=help-container class=help-container>
+  <!-- <h3>Serv na man?</h3> -->
+    <button id="myBtn"  class='btn'>AIUTINO -10 punti</button>
+    <button id="myBtn2" class='btn'>SOLUTION -20 punti</button>
+</div>
 <!-- The Modal for Helpme-->
 <div id="myModalHelpme" class="modal">
   <!-- Modal content -->
@@ -33,7 +33,6 @@
 </div>
 <!-- The Modal for Solution -->
 <div id="myModalSolution" class="modal">
-  <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">×</span>
@@ -54,10 +53,11 @@
 <style>
 .info_clue{
     font-size: 15px;
+    margin-top: 8px;
   }
 .container_clue{
-      font-size: 28px;
-      margin-top: 10px;
+      font-size: 35px;
+      margin-top: 20px;
     }
 .plotToolText{
   font-size: 14px;
@@ -112,9 +112,32 @@
     font-weight: bold;
 }
 .btn {
-  color: #2AA992;
-  font-size: 15px;
-  font-weight: bold;
+	background-color:#2AA992;//#44c767;
+	-moz-border-radius:26px;
+	-webkit-border-radius:26px;
+	border-radius:26px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:12px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+  float: center;
+}
+.btn:hover {
+	background-color:#000;
+}
+.btn:active {
+	position:relative;
+	top:1px;
+}
+.help-container{
+  display: none; /* Hidden by default */
+  margin-top: 30px;
+  float: center;
 }
 .close:hover,
 .close:focus {
@@ -427,7 +450,41 @@ function adjustColumn(s){
 
     document.getElementById('loc_div').innerHTML ='Posizione Attuale: '+match_results[3];
     document.getElementById('team_div').innerHTML='Team: '+match_results[2];
-    document.getElementById('clue').innerHTML='Indizio: '+ "<br />" +adjustColumn(match_results[9]);
+    document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
+
+    // implement logic for buttons AIUTI
+    var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
+    var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+    var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+    btn.onclick = function() {
+      modalHelpme.style.display = "block";
+      document.getElementById("modalHelpme-body").innerHTML =
+                      '<br />'+match_results[3]+'<br />';
+      console.log('mi vedi qua?');
+      notifyUseOfHelp('HelpMe');
+      }// When the user clicks the button, open the modal
+    span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
+    window.onclick = function(event) {// When the user clicks anywhere outside of the modal, close it
+        if (event.target == modalHelpme) { modalHelpme.style.display = "none";}
+    	}
+    // repeat for other button ('solution')
+    var modalSolution = document.getElementById('myModalSolution');
+    var btn2 = document.getElementById("myBtn2");
+    var span2 = document.getElementsByClassName("close")[1];
+    btn2.onclick = function() {
+      modalSolution.style.display = "block";
+      document.getElementById("modalSolution-body").innerHTML =
+                      '<br />'+match_results[3]+'<br />';
+      console.log('mi vedi?');
+      notifyUseOfHelp('Solution');
+      }
+    span2.onclick = function() { modalSolution.style.display = "none"; }
+    window.onclick = function(event) {
+        if (event.target == modalSolution) { modalSolution.style.display = "none";}
+    	}
+      // make buttons visible
+    var help_container = document.getElementById('help-container');
+    help_container.style.display = "block";
   } else {
     document.getElementById('clue').innerHTML="Error: password non riconosciuta o location inesatta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
   }
@@ -536,34 +593,4 @@ function notifyUseOfHelp(help_type){
    });
 }
 
-// implement logic for buttons AIUTI
-var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
-var btn = document.getElementById("myBtn"); // Get the button that opens the modal
-var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
-btn.onclick = function() {
-  modalHelpme.style.display = "block";
-  document.getElementById("modalHelpme-body").innerHTML =
-                  '<br />'+match_results[3]+'<br />';
-  console.log('mi vedi qua?');
-  notifyUseOfHelp('HelpMe');
-  }// When the user clicks the button, open the modal
-span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
-window.onclick = function(event) {// When the user clicks anywhere outside of the modal, close it
-    if (event.target == modalHelpme) { modalHelpme.style.display = "none";}
-	}
-// repeat for other button ('solution')
-var modalSolution = document.getElementById('myModalSolution');
-var btn2 = document.getElementById("myBtn2");
-var span2 = document.getElementsByClassName("close")[1];
-btn2.onclick = function() {
-  modalSolution.style.display = "block";
-  document.getElementById("modalSolution-body").innerHTML =
-                  '<br />'+match_results[3]+'<br />';
-  console.log('mi vedi?');
-  notifyUseOfHelp('Solution');
-  }
-span2.onclick = function() { modalSolution.style.display = "none"; }
-window.onclick = function(event) {
-    if (event.target == modalSolution) { modalSolution.style.display = "none";}
-	}
 </script>
