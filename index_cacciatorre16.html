@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<h1>Cacciatorre 2016</h1>
+<h1>CacciaTorre 2016</h1>
 <!-- <p><i>switcher</i></p> -->
 <div class="info_clue">
   <div id="loc_div"></div>
@@ -223,264 +223,20 @@ h1{
 <!-- <script src="https://code.jquery.com/jquery-3.0.0-alpha1.js"></script> -->
 <script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
 
-<script>
-function fetchData(){
-return [
-['qzmo','0t3sthvfby','Team_1','loc_clue_1','u94kym9dj3','loc_clue_5','1','1','5',"5m3hj1e7ePar§n§a d§vrd eiod v§§i  e§ai ae§darn, v§vid§le§,od v§l eeai§n§a §de§ragcm16q1"],
-['qzmo','u94kym9dj3','Team_1','loc_clue_5','dt20fpmrvf','loc_clue_6','2','5','6',"bvfdvb9qo§Ildrvdn§r§ cn §§oa§ise§ le,oqzedt§i§ on§s§iui  o'lan§svidsioaaiao§§en§ljx7kxt0s"],
-['qzmo','dt20fpmrvf','Team_1','loc_clue_6','6xfu72yqju','loc_clue_7','3','6','7',"sri4uugdePa§rna dvrd e§iod§ vi  §eai§§ aed§arn, vvidle§,o§d §vl§ e§eaina §§de§rgdi3aapt"],
-['qzmo','6xfu72yqju','Team_1','loc_clue_7','fyae89br5i','loc_clue_3','4','7','3',"cysc3lqqoIldr§vdnr §c§n oai§§se§§ le§,§oqz§edti ons§iui§  o'lansv§ids§ioaai§aoenlbdnbmrub"],
-['qzmo','fyae89br5i','Team_1','loc_clue_3','vhowtegapr','loc_clue_2','5','3','2',"v97ic6grePar§na dvr§d eiod v§i§ § §e§a§i aedarn,§ §v§§vidle,§od§ vl e§eaina der6dels5d8"],
-['qzmo','vhowtegapr','Team_1','loc_clue_2','43wan6ynwi','loc_clue_4','6','2','4',"kgdcjsfuoIl§drvdn§r§ cn oaise l§e,oqz§§edti §§onsiui  o§'l§ansv§idsioa§§§a§iaoenl1eyvn7et"],
-['qzmo','43wan6ynwi','Team_1','loc_clue_4','0000000000','Ci si vede in Villa','7','4','8',"qfeg8dqceP§§arna dvr§d §e§io§d vi  eai aedarn§,§ v§vidl§e,o§d§ vl §§eeaina§ dermfj125q2"],
-['s62c','vhowtegapr','Team_2','loc_clue_2','fyae89br5i','loc_clue_3','1','2','3',"d6ftvc8veParn§a d§vrd eiod§ §§vi§§§§  §e§ai aedarn, §vvidle,od§ vl e§eaina §derq4rao1ys"],
-['s62c','fyae89br5i','Team_2','loc_clue_3','dt20fpmrvf','loc_clue_6','2','3','6',"9ehgbqelo§§Il§d§rvd§nr cn o§aise le,oqze§dti on§s§i§ui  §o'l§a§ns§v§idsioaaiaoenl76fsjype"],
-['s62c','dt20fpmrvf','Team_2','loc_clue_6','43wan6ynwi','loc_clue_4','3','6','4',"pfd56tjteParna§ dvr§§d §eiod vi  §eai§ a§ed§§arn, vvi§dle§,o§d vl e§§§eaina derw5dqltrd"],
-['s62c','43wan6ynwi','Team_2','loc_clue_4','6xfu72yqju','loc_clue_7','4','4','7',"v6mgugubo§Il§drv§dnr cn §oais§§e le,oqzedti o§nsiu§§i § o'la§ns§vidsio§a§aiaoen§l9ctiybc6"],
-['s62c','6xfu72yqju','Team_2','loc_clue_7','u94kym9dj3','loc_clue_5','5','7','5',"ebjbxubcePa§r§n§a dv§rd ei§od§ §v§i  ea§i aed§§a§rn§, vvidle,od§ vl eeain§a derlnc4ta5n"],
-['s62c','u94kym9dj3','Team_2','loc_clue_5','0t3sthvfby','loc_clue_1','6','5','1',"gpre62m9oI§ld§§§r§v§dnr cn oaise§§ le,oqz§e§dti on§§siui§  o'lansvidsio§aaiaoen§lsd2me8fp"],
-['s62c','0t3sthvfby','Team_2','loc_clue_1','0000000000','Ci si vede in Villa','7','1','8',"gkpcdee5eParna dvrd eio§d §vi  ea§i§ §§aed§ar§n, v§v§i§d§le,od vl eea§in§a d§erb3peotd9"],
-['kn5p','43wan6ynwi','Team_3','loc_clue_4','dt20fpmrvf','loc_clue_6','1','4','6',"tdiaejfdePa§r§na dvrd ei§od vi§  e§a§§i aeda§§rn§, vvidle,od v§l §eeai§na §de§ru1c5zq8r"],
-['kn5p','dt20fpmrvf','Team_3','loc_clue_6','vhowtegapr','loc_clue_2','2','6','2',"y4gvdud8oIl§d§rvdnr cn §oais§e§§§ l§e,oqz§edti§ onsiui  o'lansvi§§dsi§§§oaaiaoenltkb4t3pa"],
-['kn5p','vhowtegapr','Team_3','loc_clue_2','0t3sthvfby','loc_clue_1','3','2','1',"arqrx675eParna dv§rd§ eiod vi  ea§§i§ aedarn, v§v§idle,o§§§d v§l§ §eeain§§a dert6eibqyb"],
-['kn5p','0t3sthvfby','Team_3','loc_clue_1','u94kym9dj3','loc_clue_5','4','1','5',"l0qzbwtaoI§ld§rv§d§nr §cn oais§e le,oq§z§edti §onsiui § o'lan§s§§vidsioa§§aiaoenlz9fjcyb9"],
-['kn5p','u94kym9dj3','Team_3','loc_clue_5','fyae89br5i','loc_clue_3','5','5','3',"wwx1vph7e§P§§§arna dvrd§ eiod v§i  eai aedar§§n,§ §§vvidle,od §v§l e§e§aina derepze3q6i"],
-['kn5p','fyae89br5i','Team_3','loc_clue_3','6xfu72yqju','loc_clue_7','6','3','7',"8vyipfy0o§Ildrvd§nr cn o§ai§s§§e le,§oqz§edti ons§iu§i  o'lansvidsioaa§ia§§oen§§lddcuy3ac"],
-['kn5p','6xfu72yqju','Team_3','loc_clue_7','0000000000','Ci si vede in Villa','7','7','8',"28d5rcdxePar§§na dvrd eiod v§i § e§§§ai a§edar§§n, v§vid§le,o§d vl eeaina§ §derts8seaea"],
-['ivr6','43wan6ynwi','Team_4','loc_clue_4','fyae89br5i','loc_clue_3','1','4','3',"807zeyx0eParn§§a §d§vrd e§iod §vi  e§ai ae§darn, v§§vi§dle,od§§ vl e§ea§ina derzhp0s8b6"],
-['ivr6','fyae89br5i','Team_4','loc_clue_3','u94kym9dj3','loc_clue_5','2','3','5',"jf9pkejkoIl§drvdn§§r §cn§§ oa§is§e le,oqzed§§ti on§si§ui § o'lan§svidsioaaiaoe§nl6otas0vq"],
-['ivr6','u94kym9dj3','Team_4','loc_clue_5','6xfu72yqju','loc_clue_7','3','5','7',"n697n6kte§§Parn§a d§vrd eiod §§v§§i  e§ai aedarn, vvidl§e,§od §vl §§eeaina §derr3fvtvhh"],
-['ivr6','6xfu72yqju','Team_4','loc_clue_7','vhowtegapr','loc_clue_2','4','7','2',"iu4adjaboI§ldrv§§dnr c§n oa§ise §le,oqz§edti§ onsiui  o'§lansvidsioa§a§§§iao§en§l0h2bw4zd"],
-['ivr6','vhowtegapr','Team_4','loc_clue_2','0t3sthvfby','loc_clue_1','5','2','1',"jadnj2q2e§P§a§rna§ d§vrd eio§d§ vi§ §§ ea§§i aed§arn, §vv§idle,od vl eeaina dernaaajyaf"],
-['ivr6','0t3sthvfby','Team_4','loc_clue_1','dt20fpmrvf','loc_clue_6','6','1','6',"fcacw01foIldrvdn§r §cn o§ai§s§e§ le§,§oqzedti ons§iui §§ §o'lansvidsioa§§aia§oenl5taiqum2"],
-['ivr6','dt20fpmrvf','Team_4','loc_clue_6','0000000000','Ci si vede in Villa','7','6','8',"rraek2bpeParna§ d§v§rd eiod v§i§§§  e§ai aeda§rn, vv§idle,od §vl §e§eaina §d§erf40rko56"],
-['73z0','6xfu72yqju','Team_5','loc_clue_7','0t3sthvfby','loc_clue_1','1','7','1',"5f931vqkePa§rna d§vrd§§ e§iod§ vi § eai§ aedarn, §§vv§§idle,§od vl§ e§eaina der2t0913o4"],
-['73z0','0t3sthvfby','Team_5','loc_clue_1','vhowtegapr','loc_clue_2','2','1','2',"f0htbdgdoI§ldrvdnr cn§ §o§§a§ise l§e,oqzedt§§i onsiui  §§o§'lansv§id§sioaai§aoenl67bsblp3"],
-['73z0','vhowtegapr','Team_5','loc_clue_2','43wan6ynwi','loc_clue_4','3','2','4',"62radp83eParna§ dvrd §eio§d vi § e§§ai aedarn, §vv§§idl§e,o§d §vl§ eeai§§na der78jh0c87"],
-['73z0','43wan6ynwi','Team_5','loc_clue_4','dt20fpmrvf','loc_clue_6','4','4','6',"ib30px1hoIl§drvd§nr cn o§aise le§§,oqzedti ons§iu§§i  o§§'§§§lan§sv§idsioaaiaoenl6sgf5ja7"],
-['73z0','dt20fpmrvf','Team_5','loc_clue_6','u94kym9dj3','loc_clue_5','5','6','5',"xvu8bn3oePa§§§rna dvrd §eiod vi  eai aeda§§r§n,§ v§§v§i§dle,od vl e§§eaina de§r0bx6albd"],
-['73z0','u94kym9dj3','Team_5','loc_clue_5','fyae89br5i','loc_clue_3','6','5','3',"iuls8ta3oI§§ldrvdnr cn oaise l§§§e§,oqzedt§i §onsiui  §o'§lans§vidsio§aa§§ia§oenlyeaglqf2"],
-['73z0','fyae89br5i','Team_5','loc_clue_3','0000000000','Ci si vede in Villa','7','3','8',"pctcl3m6eParna§ dvrd e§iod§ §vi§  e§§ai aedarn, vv§id§§§l§e,od v§§l eeai§na derjxsel6ck"],
-['6cma','vhowtegapr','Team_6','loc_clue_2','0t3sthvfby','loc_clue_1','1','2','1',"icdstevcePa§rn§a§ d§§vrd eiod vi  eai a§§edarn, vvi§d§le§§,od v§l eeaina§ §de§r7divpqj0"],
-['6cma','0t3sthvfby','Team_6','loc_clue_1','6xfu72yqju','loc_clue_7','2','1','7',"3z76dp1po§Ildrvdn§§r §cn oais§e §le,o§qzedti onsiui § o§'§§lans§vi§d§sioaai§aoenltrycodir"],
-['6cma','6xfu72yqju','Team_6','loc_clue_7','fyae89br5i','loc_clue_3','3','7','3',"qmxzkrc7eParna d§§vrd §e§i§§od§ vi  eai§§ aed§arn§, §vvidle,o§d vl eea§in§a derpfd8wxv0"],
-['6cma','fyae89br5i','Team_6','loc_clue_3','u94kym9dj3','loc_clue_5','4','3','5',"0iuhhvmeoIl§drvdnr cn oa§is§e le,o§q§zedt§i §§onsi§ui § o'§lansvidsio§§aa§§iaoenld8xvharb"],
-['6cma','u94kym9dj3','Team_6','loc_clue_5','dt20fpmrvf','loc_clue_6','5','5','6',"2i0xsjkleParn§§§a dvr§d§ eio§d§ §vi  e§ai§ aedar§n, vv§idle§,od§ vl eeai§na derldobrc44"],
-['6cma','dt20fpmrvf','Team_6','loc_clue_6','43wan6ynwi','loc_clue_4','6','6','4',"afk3c78jo§Ildrvdnr §cn o§§§§aise §l§§e,oq§zedti onsiui  o'lans§vidsioaaia§oe§§n§l9fzsuoda"],
-['6cma','43wan6ynwi','Team_6','loc_clue_4','0000000000','Ci si vede in Villa','7','4','8',"e7o50a0weParna §dvrd ei§od §vi § eai aed§arn, vv§§idl§§e,§o§d v§l eeaina§§ de§r4suecbmh"],
-['3sni','6xfu72yqju','Team_7','loc_clue_7','fyae89br5i','loc_clue_3','1','7','3',"n398zcbbeParn§a dvr§d§ eiod v§i  eai ae§§d§arn§,§ §v§vidle§,od vl §eeai§na de§rsuju5egf"],
-['3sni','fyae89br5i','Team_7','loc_clue_3','0t3sthvfby','loc_clue_1','2','3','1',"h1gtng2roIld§rvd§§nr cn oaise§ le,o§qze§dti o§n§siui  §o'l§ansvi§d§sioaai§aoen§§lcfbrcoy8"],
-['3sni','0t3sthvfby','Team_7','loc_clue_1','vhowtegapr','loc_clue_2','3','1','2',"icbcda8ye§Parn§a d§v§rd eiod v§i § eai aed§arn, v§v§id§le,od§ vl eeaina§§ d§§erzbee589i"],
-['3sni','vhowtegapr','Team_7','loc_clue_2','dt20fpmrvf','loc_clue_6','4','2','6',"eaf7wk3woIl§§drvdnr c§§n oais§e l§e,oq§z§edti onsiui § o'la§§n§s§vi§ds§ioaaiaoenltm82afos"],
-['3sni','dt20fpmrvf','Team_7','loc_clue_6','43wan6ynwi','loc_clue_4','5','6','4',"g5d1bydcePa§r§na d§v§rd eiod §§vi § e§§ai§ ae§darn, vvidle,od vl e§e§aina §§derd9kubd4n"],
-['3sni','43wan6ynwi','Team_7','loc_clue_4','u94kym9dj3','loc_clue_5','6','4','5',"853wbdmbo§Ildrvdnr §cn§ o§aise§ le,o§qze§§dt§i onsiui  o'lansvid§s§§io§a§aiaoen§lf9hst5kx"],
-['3sni','u94kym9dj3','Team_7','loc_clue_5','0000000000','Ci si vede in Villa','7','5','8',"q3bhx4p9ePar§n§a dvrd §§eiod§ §vi § eai aedarn,§ v§§v§id§§le,od v§l eeaina §dermfnaafzt"],
-['tkcd','6xfu72yqju','Team_8','loc_clue_7','u94kym9dj3','loc_clue_5','1','7','5',"prwgtcvxeParna§§§§ dvrd eiod §vi §§ eai a§edarn,§ vvidle§§§,o§d vl eeain§a de§rnalth2fe"],
-['tkcd','u94kym9dj3','Team_8','loc_clue_5','43wan6ynwi','loc_clue_4','2','5','4',"akotcfvdoIl§drvdn§r cn oa§ise le,oqz§§edt§i onsiui  o§§'lan§s§vid§s§§ioaaia§o§enlfbap40fc"],
-['tkcd','43wan6ynwi','Team_8','loc_clue_4','fyae89br5i','loc_clue_3','3','4','3',"amhd2kvrePa§rna§ dvrd §§eiod vi§§  eai a§ed§§a§rn, vvi§d§le,o§d vl eeai§n§a deravhfnu1r"],
-['tkcd','fyae89br5i','Team_8','loc_clue_3','dt20fpmrvf','loc_clue_6','4','3','6',"o6cmtsvfoI§ld§r§vdnr cn §o§§ai§se le,o§qzedti onsiui§  o§'l§ansvi§d§sioaa§iaoen§ll17ngmgf"],
-['tkcd','dt20fpmrvf','Team_8','loc_clue_6','vhowtegapr','loc_clue_2','5','6','2',"e1vmqquve§Parna§§ d§§§v§rd eiod v§§i  e§ai ae§darn, vvid§le§,od§ vl eeain§a derc1cldfa6"],
-['tkcd','vhowtegapr','Team_8','loc_clue_2','0t3sthvfby','loc_clue_1','6','2','1',"b8yf37rkoIldrvdnr cn §oaise §§le§§,oqzed§§ti §§onsiui  §o'l§a§nsv§id§sioaaiaoen§lmxeb7909"],
-['tkcd','0t3sthvfby','Team_8','loc_clue_1','0000000000','Ci si vede in Villa','7','1','8',"bavjjmpgeParna§ d§vrd eiod §vi § ea§i a§§e§darn, vvi§d§le,o§d§ vl §e§e§aina deroabgzsx1"],
-['coep','6xfu72yqju','Team_9','loc_clue_7','vhowtegapr','loc_clue_2','1','7','2',"dh8g7laheParn§a §dvrd§§ §§e§iod v§i  eai aed§a§rn, v§v§idle§,od vl eeaina d§§era9mqf5e2"],
-['coep','vhowtegapr','Team_9','loc_clue_2','dt20fpmrvf','loc_clue_6','2','2','6',"0hembwecoIl§drvdnr§ cn oaise §le,§oq§§z§edti o§§nsi§§ui  o'lansvidsioa§ai§§§aoenlqujt3xks"],
-['coep','dt20fpmrvf','Team_9','loc_clue_6','fyae89br5i','loc_clue_3','3','6','3',"ld2jpz2keP§arn§a dv§rd §ei§§od§§ vi§  eai aedarn, vv§idle,§od vl e§§ea§ina §deref17r7t9"],
-['coep','fyae89br5i','Team_9','loc_clue_3','u94kym9dj3','loc_clue_5','4','3','5',"1qdwcs9joIldrvdnr§§ c§§n §oaise§§ le,oqzedti§ §onsiui§ § §o'lans§vidsio§aaiaoen§lr6e2b4f3"],
-['coep','u94kym9dj3','Team_9','loc_clue_5','43wan6ynwi','loc_clue_4','5','5','4',"oi0f2b46eP§arna §§d§vrd§ ei§od vi  eai aeda§rn, vvidle,od §v§l§§ §ee§ain§a d§erccra26xe"],
-['coep','43wan6ynwi','Team_9','loc_clue_4','0t3sthvfby','loc_clue_1','6','4','1',"eygdfd2jo§Ild§rvdnr c§n oai§se le§,oqzed§§ti onsi§u§i§  o'lansvid§si§oa§a§ia§oenlv7lt8jvh"],
-['coep','0t3sthvfby','Team_9','loc_clue_1','0000000000','Ci si vede in Villa','7','1','8',"o2m4a9fbeP§arna dvr§d e§iod §§§vi  ea§i aed§arn, vvidl§e,§od v§l ee§a§i§na §derao5f0bye"],
-['6meu','0t3sthvfby','Team_10','loc_clue_1','dt20fpmrvf','loc_clue_6','1','1','6',"mvddnyt5eP§§§a§rna §dvrd eiod vi  e§§§§ai ae§§darn, §vvid§le,o§d vl eea§ina deredd2x4xv"],
-['6meu','dt20fpmrvf','Team_10','loc_clue_6','fyae89br5i','loc_clue_3','2','6','3',"nb15f7amoI§ldrvdnr §cn §oaise le§,oqz§e§dti§ on§§siui  o'l§a§nsvidsioa§a§iaoe§n§ladxxfhdb"],
-['6meu','fyae89br5i','Team_10','loc_clue_3','vhowtegapr','loc_clue_2','3','3','2',"dswsqnhmeParna dvrd eio§d §vi§  eai ae§d§a§§rn,§ vvid§l§§e§,od§ v§l eeaina §der09f1fbnr"],
-['6meu','vhowtegapr','Team_10','loc_clue_2','6xfu72yqju','loc_clue_7','4','2','7',"3e3im1ftoI§ldrvdnr§ cn o§aise l§§e,oqzedti§§ onsi§u§i  §§o§§'lan§svi§dsioaaiaoenl7ucxexjq"],
-['6meu','6xfu72yqju','Team_10','loc_clue_7','43wan6ynwi','loc_clue_4','5','7','4',"srtrfaybeP§arn§a §dvrd e§iod§§ §vi § §eai ae§darn, v§vidle,o§d vl eeai§na§ d§er1l28lc1u"],
-['6meu','43wan6ynwi','Team_10','loc_clue_4','u94kym9dj3','loc_clue_5','6','4','5',"41qzzm3ooIld§rvdnr cn oaise §l§§§e,o§q§zedti §on§siui § o'la§nsv§i§dsio§aaiao§enl71fdfqcn"],
-['6meu','u94kym9dj3','Team_10','loc_clue_5','0000000000','Ci si vede in Villa','7','5','8',"bw5ie1nwePa§r§na dvrd§ §eiod§ §§vi  eai aeda§rn, vvidle§§,od §vl eea§ina d§§e§rwlvuqcpz"],
-['5mbf','u94kym9dj3','Team_11','loc_clue_5','dt20fpmrvf','loc_clue_6','1','5','6',"tjv3esspe§P§arna §§dvrd e§iod v§i§  §ea§i §§aedarn,§ vv§idle,§od vl eeaina§ dern8brubu3"],
-['5mbf','dt20fpmrvf','Team_11','loc_clue_6','6xfu72yqju','loc_clue_7','2','6','7',"vfww72b7oIldrv§§dnr c§n§ oaise§ le,o§qz§e§dti on§§siui§§ § o'l§ansvidsio§aaiaoenlcdagfskb"],
-['5mbf','6xfu72yqju','Team_11','loc_clue_7','0t3sthvfby','loc_clue_1','3','7','1',"bdxr4ze8e§§P§arna d§v§§rd eiod vi§  e§ai§ aedarn, vvid§l§e,od§ v§§l §eeaina derzawobedt"],
-['5mbf','0t3sthvfby','Team_11','loc_clue_1','fyae89br5i','loc_clue_3','4','1','3',"ewzs26uaoIl§drvdnr§ cn §o§§aise le,oqzedti§§ §onsiu§i § o§'lan§svidsi§oaai§ao§enlbb7o1nol"],
-['5mbf','fyae89br5i','Team_11','loc_clue_3','vhowtegapr','loc_clue_2','5','3','2',"npqigx7seParna dvrd eio§§d§ §§vi  e§ai aedarn, vvid§l§e§,od v§l §§§eea§i§na derszjnp7mu"],
-['5mbf','vhowtegapr','Team_11','loc_clue_2','43wan6ynwi','loc_clue_4','6','2','4',"xmuvwcdbo§Il§drvd§nr cn§ oaise le,oqzed§ti on§§siui § §§§o'l§an§svi§dsio§aaiaoenl6pwwddf6"],
-['5mbf','43wan6ynwi','Team_11','loc_clue_4','0000000000','Ci si vede in Villa','7','4','8',"fzhb9x2weP§arn§a dvrd §e§§iod vi  eai aedarn,§ §v§vi§d§l§e,§od vl §eeai§n§a derwqbor2cq"],
-['c0qy','6xfu72yqju','Team_12','loc_clue_7','u94kym9dj3','loc_clue_5','1','7','5',"znb3aefhe§Pa§rna§ dv§rd eiod vi  §ea§i aeda§rn§, vvi§dle,od §v§l§ e§ea§in§a dertw99zf8l"],
-['c0qy','u94kym9dj3','Team_12','loc_clue_5','vhowtegapr','loc_clue_2','2','5','2',"njdeijaho§I§ldrvdnr§§ §cn §oaise le§,oq§zedti §onsi§ui§  o'§la§nsvid§§sioaaiaoenlf2i4f0ta"],
-['c0qy','vhowtegapr','Team_12','loc_clue_2','fyae89br5i','loc_clue_3','3','2','3',"qefdh2p4e§Parna dvrd ei§o§d §§vi§  eai §aedarn§, v§vi§dl§e§,od §vl ee§ain§a der9hdpi4e3"],
-['c0qy','fyae89br5i','Team_12','loc_clue_3','dt20fpmrvf','loc_clue_6','4','3','6',"dd58khr1o§§§Il§drvdnr c§n oa§ise §le§,o§qzedti§ o§nsi§ui  §o'l§ansvidsio§aaiaoenl141a6abx"],
-['c0qy','dt20fpmrvf','Team_12','loc_clue_6','43wan6ynwi','loc_clue_4','5','6','4',"fmkt07feePar§§§na§ §dvrd e§iod v§i  eai aeda§r§§n, §vv§idle§,od §vl eeaina de§rj9i5dd97"],
-['c0qy','43wan6ynwi','Team_12','loc_clue_4','0t3sthvfby','loc_clue_1','6','4','1',"4sgbicveoI§l§dr§vdnr§ cn oaise §§le,§oqzedti §onsiui §§§ o'lans§§§vidsioaaiaoe§nlzglcbbfc"],
-['c0qy','0t3sthvfby','Team_12','loc_clue_1','0000000000','Ci si vede in Villa','7','1','8',"fb7b4p1mePa§r§n§a dvrd e§iod§ vi§§  §eai aedarn,§ §vvidle§,o§d vl eeai§§na§ derizjr53em"],
-['zuw5','vhowtegapr','Team_13','loc_clue_2','u94kym9dj3','loc_clue_5','1','2','5',"fecuxfljePar§n§§a dvrd eiod§ vi § eai aeda§§r§n, v§§v§§idle,od vl§ e§eaina de§rdcfwdday"],
-['zuw5','u94kym9dj3','Team_13','loc_clue_5','dt20fpmrvf','loc_clue_6','2','5','6',"d1kddd6coIld§rvdnr§§ cn§ oaise le,o§q§zedti§§ on§§siui  o§'la§§n§svid§sioaaiaoenl8i8ictr6"],
-['zuw5','dt20fpmrvf','Team_13','loc_clue_6','fyae89br5i','loc_clue_3','3','6','3',"ahofw6rfe§Parna §dvrd §§e§iod v§i§  eai a§edar§n, vvidle,o§d v§l e§§eain§a d§er6cu7p8fq"],
-['zuw5','fyae89br5i','Team_13','loc_clue_3','0t3sthvfby','loc_clue_1','4','3','1',"fsuzh60eoI§§ldrv§dnr§ cn §o§aise le,oqz§edti§ on§siui§  o'la§nsvids§i§oa§a§iaoenlf6e1e0v0"],
-['zuw5','0t3sthvfby','Team_13','loc_clue_1','6xfu72yqju','loc_clue_7','5','1','7',"khvkf9ppeP§arn§a§§ §dvr§d§ e§iod vi  eai a§edarn,§ vvidle,o§d vl e§e§aina§ d§erhc4fqr8f"],
-['zuw5','6xfu72yqju','Team_13','loc_clue_7','43wan6ynwi','loc_clue_4','6','7','4',"dhtj6c9woIldrvdnr cn§ oa§i§§s§e le§,oq§zedt§i o§§ns§iui § o'lansv§idsio§aaiao§enltabsbxce"],
-['zuw5','43wan6ynwi','Team_13','loc_clue_4','0000000000','Ci si vede in Villa','7','4','8',"oddc0l2aePa§§rna §dvrd§ eio§d §vi  eai aedarn, v§vi§dle,od v§l§ eea§§in§a §d§erya3q8d7j"],
-['x5qf','0t3sthvfby','Team_14','loc_clue_1','6xfu72yqju','loc_clue_7','1','1','7',"u6tos9piePa§rna§§ d§§vrd eiod vi § §§eai§ aedarn, vv§§i§dle,od §vl §ee§aina der995zvymk"],
-['x5qf','6xfu72yqju','Team_14','loc_clue_7','dt20fpmrvf','loc_clue_6','2','7','6',"deifzmawo§Il§d§§§rvd§nr§ cn §oaise le,oqzedti §on§si§ui § o'lansvidsioa§aia§§oenl4f2ebq70"],
-['x5qf','dt20fpmrvf','Team_14','loc_clue_6','43wan6ynwi','loc_clue_4','3','6','4',"ph3ac4dheParn§a dv§§rd eiod vi  ea§i§ §ae§d§arn,§ vvi§dle,§§§od §vl eeaina§ deri1r2dcuc"],
-['x5qf','43wan6ynwi','Team_14','loc_clue_4','u94kym9dj3','loc_clue_5','4','4','5',"ge66hd0foIldrvdnr §cn§ oaise §§le§,oqzed§§ti onsiu§i§  o'lan§§§svi§dsio§aai§aoenlnmtftfem"],
-['x5qf','u94kym9dj3','Team_14','loc_clue_5','fyae89br5i','loc_clue_3','5','5','3',"o6xxaqlueP§arna dvrd§ eio§d v§i  eai§ §a§§eda§rn, §vvidle§,od §vl eeain§§a§ derqdr4af0a"],
-['x5qf','fyae89br5i','Team_14','loc_clue_3','vhowtegapr','loc_clue_2','6','3','2',"kbaabaplo§§Ildrvd§nr§ c§n oa§ise§§ le,oqzedti onsiu§i  o'la§ns§§vid§§sioaa§iaoenlsfssfdbb"],
-['x5qf','vhowtegapr','Team_14','loc_clue_2','0000000000','Ci si vede in Villa','7','2','8',"vf4bz5tyePar§na§ dvr§d §§e§§iod v§i  eai aeda§rn, v§vidle,o§d vl §e§eaina§ d§ernzacdb73"],
-['czly','fyae89br5i','Team_15','loc_clue_3','0t3sthvfby','loc_clue_1','1','3','1',"7palf7f5eParna§ dvr§§d e§iod§§ vi§ § eai aed§arn, vvidle,od v§§l e§eai§na d§e§r506a8dfo"],
-['czly','0t3sthvfby','Team_15','loc_clue_1','43wan6ynwi','loc_clue_4','2','1','4',"q6hg40k5o§I§ldrvdn§r§ cn oa§is§e le,§§o§q§§zedti ons§§iui  o'lansvidsioaaiaoe§§nllnlnxeyf"],
-['czly','43wan6ynwi','Team_15','loc_clue_4','u94kym9dj3','loc_clue_5','3','4','5',"adhdxx3rePar§na d§vrd§§ e§i§o§§§d vi  eai aed§arn,§ §v§vidle,od vl eeaina §§derrq4mktge"],
-['czly','u94kym9dj3','Team_15','loc_clue_5','dt20fpmrvf','loc_clue_6','4','5','6',"3y5ac5nboIldr§vdnr §cn §oais§e §le,§oqz§ed§ti §onsiui§§  o'la§§ns§vi§dsioaaiaoenly513qcq3"],
-['czly','dt20fpmrvf','Team_15','loc_clue_6','vhowtegapr','loc_clue_2','5','6','2',"f7umxqv0eParna dv§rd §§eiod vi § ea§i §ae§§§darn, vvi§dle,§§od vl§ ee§aina§ dertpoe6mlb"],
-['czly','vhowtegapr','Team_15','loc_clue_2','6xfu72yqju','loc_clue_7','6','2','7',"tyltlfiqoI§ldrvdn§r c§n§ oais§e le,oqzedti§ §on§siu§§i  o'lan§s§§vidsioaaia§o§enlfdgwnocd"],
-['czly','6xfu72yqju','Team_15','loc_clue_7','0000000000','Ci si vede in Villa','7','7','8',"gadw9eu8eParna dvrd§§ eiod§§§ vi§§  e§ai aedar§n, vvid§§le,od§ vl eea§§ina de§rogtqfrae"],
-['xtzs','6xfu72yqju','Team_16','loc_clue_7','43wan6ynwi','loc_clue_4','1','7','4',"b85ua9kkeParna §§dvrd e§iod§ vi § eai a§§ed§arn§, vvidle§,od§ vl §eea§in§§a derpr83o4kc"],
-['xtzs','43wan6ynwi','Team_16','loc_clue_4','0t3sthvfby','loc_clue_1','2','4','1',"aldqhxseo§Ild§rvdnr cn oaise§§§ le§,oqze§d§ti on§si§ui  o'§la§nsvidsioaa§§ia§oenlcabotffh"],
-['xtzs','0t3sthvfby','Team_16','loc_clue_1','fyae89br5i','loc_clue_3','3','1','3',"fhi751dleParn§§a§§ dvrd§ §§eiod§ vi  e§§ai aedar§§n, v§v§idle,od vl eeai§na derkl8de1b8"],
-['xtzs','fyae89br5i','Team_16','loc_clue_3','vhowtegapr','loc_clue_2','4','3','2',"duj5l5d1oIldrvdnr cn §oa§is§e le,§§oqzedti o§n§siu§i § o'la§nsvi§§dsioaaiao§en§§l4lsdesp6"],
-['xtzs','vhowtegapr','Team_16','loc_clue_2','u94kym9dj3','loc_clue_5','5','2','5',"efuoem5reP§a§§§§r§na§ dvrd eiod v§i  eai§ aed§arn§, vvi§d§le,o§d vl eeain§a dery9spqt0t"],
-['xtzs','u94kym9dj3','Team_16','loc_clue_5','dt20fpmrvf','loc_clue_6','6','5','6',"x5t4w0qaoIldrvd§§nr c§§n§ oa§ise§ le§,oqze§dti onsiu§i  §o'§la§nsvidsio§aaiao§enlcmrkvs0b"],
-['xtzs','dt20fpmrvf','Team_16','loc_clue_6','0000000000','Ci si vede in Villa','7','6','8',"qdeuet5oeParna d§vrd §e§iod vi  e§§a§i a§ed§ar§n, vvidle,od §vl eea§in§a§ §d§erh08vombm"],
-['rr7o','u94kym9dj3','Team_17','loc_clue_5','dt20fpmrvf','loc_clue_6','1','5','6',"c8ss7e45ePa§r§na dv§rd§ ei§od §vi  eai a§e§d§ar§n§, v§vidle,§od§§ vl eeaina dercbvbejkd"],
-['rr7o','dt20fpmrvf','Team_17','loc_clue_6','0t3sthvfby','loc_clue_1','2','6','1',"sj1d90a5oIldrvdn§r cn §oaise §le,oq§zedt§i§ on§siui  o§§§'la§n§svidsioaa§ia§oen§l4x5njd94"],
-['rr7o','0t3sthvfby','Team_17','loc_clue_1','6xfu72yqju','loc_clue_7','3','1','7',"yxp50ozwe§§§Parn§a dvrd ei§od vi  ea§§§i §ae§d§arn§, vvid§l§§e,od vl eeaina der9e4rf83c"],
-['rr7o','6xfu72yqju','Team_17','loc_clue_7','43wan6ynwi','loc_clue_4','4','7','4',"ejinbze5oIldrvdnr §cn §oai§se le,o§q§z§edti onsiu§i §§ o'l§ansvi§dsioaa§i§§aoe§nld03mtizs"],
-['rr7o','43wan6ynwi','Team_17','loc_clue_4','fyae89br5i','loc_clue_3','5','4','3',"rf3ylfhseParna§ dvrd eiod vi  eai ae§da§§rn, §§v§v§idle,§od§ v§l e§ea§i§na de§rw4cplez1"],
-['rr7o','fyae89br5i','Team_17','loc_clue_3','vhowtegapr','loc_clue_2','6','3','2',"vhpba1ewoIldrvdnr §cn§§ oa§is§§e §le,§§oqzed§ti o§nsi§ui  o§'lansvidsioaa§iao§enl01x7g9rv"],
-['rr7o','vhowtegapr','Team_17','loc_clue_2','0000000000','Ci si vede in Villa','7','2','8',"ufp5b2beePar§na dvr§§d e§§iod §vi  eai§ aedar§n, v§vidle,od vl§ eea§ina§ §d§§erba85cw9d"],
-['eiy4','6xfu72yqju','Team_18','loc_clue_7','0t3sthvfby','loc_clue_1','1','7','1',"kxd7fpbheParna dv§r§d §eiod vi§§  ea§i aed§a§r§n§,§ v§§v§idle,§od vl eeaina derh7com2a1"],
-['eiy4','0t3sthvfby','Team_18','loc_clue_1','vhowtegapr','loc_clue_2','2','1','2',"11thzopooIl§drv§dnr cn oaise le,oqz§e§dt§§i§ §o§nsiui§  o'l§an§sv§idsioaaia§§oenllbf44oty"],
-['eiy4','vhowtegapr','Team_18','loc_clue_2','u94kym9dj3','loc_clue_5','3','2','5',"kbirrcsnePar§§na d§§vrd§§§ eiod§ vi  §eai aed§arn,§§ v§v§idle,od vl eeaina§ derv1b8q6va"],
-['eiy4','u94kym9dj3','Team_18','loc_clue_5','43wan6ynwi','loc_clue_4','4','5','4',"t5fgcacbo§Il§§§drvdn§§§§r §cn oaise le,o§qzed§ti§§ onsiui  o§'lansvidsioaaiaoe§nl05p3dljx"],
-['eiy4','43wan6ynwi','Team_18','loc_clue_4','fyae89br5i','loc_clue_3','5','4','3',"2ku8228beP§arna dvrd§ e§i§od vi§  eai §aedar§n,§§ vvidle,od§§ vl eea§i§na§§ derwy2whbff"],
-['eiy4','fyae89br5i','Team_18','loc_clue_3','dt20fpmrvf','loc_clue_6','6','3','6',"6oxv2e0loIl§§drvdnr §cn oaise le§,§oqzed§§§ti on§siui  o'lansvids§ioa§a§§iaoen§§lc48epzeb"],
-['eiy4','dt20fpmrvf','Team_18','loc_clue_6','0000000000','Ci si vede in Villa','7','6','8',"7u4f29d6eParn§a d§vrd eiod vi  ea§i §§aedarn§§, vv§idle,o§§d vl§ eeaina §§d§e§rwyw1qzp6"],
-['8h1v','0t3sthvfby','Team_19','loc_clue_1','fyae89br5i','loc_clue_3','1','1','3',"ghrrutaleParna §dvrd eio§d vi  ea§i a§edarn, vv§id§le,§od §vl§ ee§a§in§a §§d§erjdd961fr"],
-['8h1v','fyae89br5i','Team_19','loc_clue_3','6xfu72yqju','loc_clue_7','2','3','7',"8xf76nyroI§ld§rvdn§r cn oais§e le§,oqzedti§ on§§siui  o§'lansv§i§d§sio§aa§iaoen§l9k55ky65"],
-['8h1v','6xfu72yqju','Team_19','loc_clue_7','u94kym9dj3','loc_clue_5','3','7','5',"453oocnte§§P§arn§a d§v§rd eio§d vi  ea§i aedarn§, vvidl§e,od §§vl§ e§eaina§ dereifsmlce"],
-['8h1v','u94kym9dj3','Team_19','loc_clue_5','dt20fpmrvf','loc_clue_6','4','5','6',"fqbenxtcoIld§r§vd§n§§r cn o§§§aise le,oqzedti on§siui  §§o'§l§§ansvid§sioaaiaoenltxh1bes4"],
-['8h1v','dt20fpmrvf','Team_19','loc_clue_6','43wan6ynwi','loc_clue_4','5','6','4',"awv2je4xe§Parna dvr§d eio§d vi§§  ea§§i aedarn, v§vidle§,od v§l§ §ee§a§ina§ derszzr1wqw"],
-['8h1v','43wan6ynwi','Team_19','loc_clue_4','vhowtegapr','loc_clue_2','6','4','2',"b5ic1bbqoIl§§drvdnr cn§§ §§oaise le,oq§§z§edti onsiui §§ o'lans§vi§ds§ioaaiao§enl7ttv6d5c"],
-['8h1v','vhowtegapr','Team_19','loc_clue_2','0000000000','Ci si vede in Villa','7','2','8',"d64srafdeP§§arna dvr§d§§§ eiod vi  §ea§i aedarn, §§vvid§le,od v§l§ eeain§a§ der2kheglcr"],
-['osrx','u94kym9dj3','Team_20','loc_clue_5','fyae89br5i','loc_clue_3','1','5','3',"leoga5cweParn§a dvrd eiod vi  §§§e§§a§i§ §§aedarn, §vvidle,§od §vl e§e§aina dera8p5yoti"],
-['osrx','fyae89br5i','Team_20','loc_clue_3','6xfu72yqju','loc_clue_7','2','3','7',"cbne6yodoI§ld§r§v§dnr cn §oais§§§e §l§e,oqzedti §onsiui  o'l§ansvi§dsio§§aaiaoenlqvtle2ep"],
-['osrx','6xfu72yqju','Team_20','loc_clue_7','0t3sthvfby','loc_clue_1','3','7','1',"6abhcayoePar§na d§v§rd eiod v§i  eai §ae§§d§a§rn, vvidle,o§d vl§ e§ea§§ina §deridmbhf2x"],
-['osrx','0t3sthvfby','Team_20','loc_clue_1','vhowtegapr','loc_clue_2','4','1','2',"uzzs0kteoIld§r§vdnr cn oai§§§§s§e l§e,o§qzedti§ ons§iui§ § o'la§nsvidsioaaia§oenlgaifla2z"],
-['osrx','vhowtegapr','Team_20','loc_clue_2','dt20fpmrvf','loc_clue_6','5','2','6',"igv659dfe§Parna§§ dvrd §eio§d v§i§  eai§ aedarn, vvi§d§le§,od vl§§ ee§aina §der9dw7f5ai"],
-['osrx','dt20fpmrvf','Team_20','loc_clue_6','43wan6ynwi','loc_clue_4','6','6','4',"c2deue15oIl§drvdnr cn o§aise §l§§e,oqzedti onsiui  o'la§ns§vid§§§si§§oaa§§iaoen§lhfao9yht"],
-['osrx','43wan6ynwi','Team_20','loc_clue_4','0000000000','Ci si vede in Villa','7','4','8',"d6ckvzbpeParn§a §dvrd ei§§od vi§  §ea§i ae§d§arn§, §vvidle§,od §v§l ee§aina der9xdbomoa"],
-['0kd3','dt20fpmrvf','Team_21','loc_clue_6','6xfu72yqju','loc_clue_7','1','6','7',"m9mge8dkeParn§a§ dv§r§d e§iod§§§ vi  e§§ai aed§arn, vvidl§e,od §vl eeaina §§derdfl96rtd"],
-['0kd3','6xfu72yqju','Team_21','loc_clue_7','0t3sthvfby','loc_clue_1','2','7','1',"tux4jxpjoIldrvd§nr cn oaise le,oq§ze§dt§i on§s§iu§i § §§o§'la§nsvidsioaa§ia§oen§lmwd98gi9"],
-['0kd3','0t3sthvfby','Team_21','loc_clue_1','43wan6ynwi','loc_clue_4','3','1','4',"7sdlb9p5eParna d§vrd eio§d vi  eai§ ae§dar§n§, vvid§le§,od§ v§§§l§§ eeaina d§ervne8uak5"],
-['0kd3','43wan6ynwi','Team_21','loc_clue_4','fyae89br5i','loc_clue_3','4','4','3',"1qsdev9eoIldrvdnr cn§ oa§i§§s§e§ l§e,oq§zed§ti §o§§§nsiu§i  o'lansvidsioa§aiaoenlba3on6lq"],
-['0kd3','fyae89br5i','Team_21','loc_clue_3','vhowtegapr','loc_clue_2','5','3','2',"q5eudlxeeParn§a §§dv§rd eiod vi  ea§i aed§a§§rn, v§§vi§dle§,od §vl e§§eaina der2u5ulvod"],
-['0kd3','vhowtegapr','Team_21','loc_clue_2','u94kym9dj3','loc_clue_5','6','2','5',"ef3kecj4oIldrvdnr c§§§n o§§§aise le,oqzedti§ onsiui§§§ § §o'l§ans§vidsioaaiao§enltej55mfr"],
-['0kd3','u94kym9dj3','Team_21','loc_clue_5','0000000000','Ci si vede in Villa','7','5','8',"sgmfgzbfeP§§§arna dvr§§d e§iod§ vi§  eai §a§eda§rn,§ vvidle,od vl§ §ee§aina der9ma5beez"],
-['o1gd','vhowtegapr','Team_22','loc_clue_2','6xfu72yqju','loc_clue_7','1','2','7',"dfed40ikePa§§rna dvr§d eiod §§vi  eai§§ §aedarn, vv§idl§e,od vl eeai§na§§§§ dersqi3f7kw"],
-['o1gd','6xfu72yqju','Team_22','loc_clue_7','fyae89br5i','loc_clue_3','2','7','3',"x8yybisnoI§§ldrvdnr §cn oai§se l§e,oqzedti o§nsiu§i  §o'lan§§sv§idsio§aaia§oe§n§l32hnwsfa"],
-['o1gd','fyae89br5i','Team_22','loc_clue_3','43wan6ynwi','loc_clue_4','3','3','4',"behikfhyePar§na §dvrd §§eio§d vi  eai§ aeda§rn, vvi§dle,§od§ vl eeaina §de§§§§r7dft20rb"],
-['o1gd','43wan6ynwi','Team_22','loc_clue_4','dt20fpmrvf','loc_clue_6','4','4','6',"yy8blax0oIld§rvdn§r cn §oa§ise§ l§e§,§oq§zedti onsiui§§  o§'lansvidsi§oa§aiao§enlraa9c2jn"],
-['o1gd','dt20fpmrvf','Team_22','loc_clue_6','0t3sthvfby','loc_clue_1','5','6','1',"j5ecy050e§Parn§a §dvrd eiod §vi § eai§ §§§aedarn, vv§id§l§e,od§ §§vl eeaina der7q89p357"],
-['o1gd','0t3sthvfby','Team_22','loc_clue_1','u94kym9dj3','loc_clue_5','6','1','5',"w6tholdsoIldrvdnr cn§ oaise§ le,oqz§ed§§ti o§nsiui§  o'lans§vid§si§§oaaia§§oe§n§l4rg510tr"],
-['o1gd','u94kym9dj3','Team_22','loc_clue_5','0000000000','Ci si vede in Villa','7','5','8',"p33jffxreParna §§dvrd ei§o§d §vi  eai aed§§ar§n, vvidl§e§,o§§d §vl e§eaina de§ralm02sfs"],
-['6595','fyae89br5i','Team_23','loc_clue_3','43wan6ynwi','loc_clue_4','1','3','4',"yabnj778ePar§n§a dvrd eiod vi § §eai aedarn,§ v§vid§§§§le,§od vl§ eeain§a §§dercassxgki"],
-['6595','43wan6ynwi','Team_23','loc_clue_4','vhowtegapr','loc_clue_2','2','4','2',"gufj4eb9oIld§rv§dn§r cn oaise§ le,§oqze§dti o§ns§iui  o'l§§ansvidsio§aaia§§oen§§ltemyrmtb"],
-['6595','vhowtegapr','Team_23','loc_clue_2','dt20fpmrvf','loc_clue_6','3','2','6',"5djl8b5reParn§a dv§r§§d eiod vi § eai§ §aed§a§rn, vvidle§,od§§ §vl§§ eeaina derh5qn1j8r"],
-['6595','dt20fpmrvf','Team_23','loc_clue_6','0t3sthvfby','loc_clue_1','4','6','1',"g38u59v1oIl§drvdnr cn §o§ai§se le,§oqzedti §on§siui §§ o'§lans§§vi§ds§i§oaaiaoenlloc1i39o"],
-['6595','0t3sthvfby','Team_23','loc_clue_1','6xfu72yqju','loc_clue_7','5','1','7',"5c8xaa3nePar§§na dv§rd §eiod vi§ § eai§ aed§ar§n, vvidl§e§,o§d vl eeai§n§a d§er3d1e97r6"],
-['6595','6xfu72yqju','Team_23','loc_clue_7','u94kym9dj3','loc_clue_5','6','7','5',"l21j6ganoIldrvdn§r cn§ §oaise l§e,oq§zedti o§nsi§ui § o'l§an§sv§idsioaa§§ia§oen§leatvvw3b"],
-['6595','u94kym9dj3','Team_23','loc_clue_5','0000000000','Ci si vede in Villa','7','5','8',"s9nofvlgeParn§a dvr§d eiod§§ v§i  eai §aeda§rn,§ vvidl§§§§e,od §v§l eea§ina dert180tmac"],
-['bt9s','u94kym9dj3','Team_24','loc_clue_5','6xfu72yqju','loc_clue_7','1','5','7',"e86fdeeeeP§arn§a dvrd e§iod§ vi § §e§§ai§ a§edarn,§ vvi§dle,o§d vl§ eeaina§ derl2tc19a3"],
-['bt9s','6xfu72yqju','Team_24','loc_clue_7','fyae89br5i','loc_clue_3','2','7','3',"4dbasxzcoIld§§rvd§nr cn§ o§a§ise §§le,§oq§§z§edti o§nsiui § o'lansvidsi§oaaiaoenl8ocbi4bi"],
-['bt9s','fyae89br5i','Team_24','loc_clue_3','dt20fpmrvf','loc_clue_6','3','3','6',"afbwboofe§Pa§§rna§ dvrd eio§d§ vi  eai aeda§rn§, vv§i§dle,o§d v§l §eea§i§na dersg6arjja"],
-['bt9s','dt20fpmrvf','Team_24','loc_clue_6','0t3sthvfby','loc_clue_1','4','6','1',"6ufc0zuyoI§ld§rvdnr§ cn §oai§se le,§oqz§edti ons§iui  o'§l§a§ns§v§§idsioa§aiaoenlc18leow3"],
-['bt9s','0t3sthvfby','Team_24','loc_clue_1','43wan6ynwi','loc_clue_4','5','1','4',"8f1ohtaceParn§a§§ d§vrd ei§od vi§  eai §a§e§d§§arn, vvid§le§,od v§l eeaina§ der6626w0xc"],
-['bt9s','43wan6ynwi','Team_24','loc_clue_4','vhowtegapr','loc_clue_2','6','4','2',"pvnbdlazo§Il§drvdnr cn oaise le§,oqze§§§§dti on§siu§i  o'la§n§sv§id§sio§aai§aoenlcmqtmdfd"],
-['bt9s','vhowtegapr','Team_24','loc_clue_2','0000000000','Ci si vede in Villa','7','2','8',"nfurqklfeParna §dvrd eiod vi §§§§ e§ai §ae§§darn, vvid§§le,o§d§ vl§§ eeaina derga7t5lkr"],
-['5c97','43wan6ynwi','Team_25','loc_clue_4','6xfu72yqju','loc_clue_7','1','4','7',"vxgduf5geParn§§a §dv§rd ei§od§ §v§§i§  eai §aed§arn, v§vidl§e,od vl §eeaina deryhjs6f7z"],
-['5c97','6xfu72yqju','Team_25','loc_clue_7','vhowtegapr','loc_clue_2','2','7','2',"mxxptz1io§I§ld§rvdnr cn oaise l§§e§,o§qze§dti ons§§iui § o'l§ansvidsi§oaai§a§oenlr3sp3wep"],
-['5c97','vhowtegapr','Team_25','loc_clue_2','fyae89br5i','loc_clue_3','3','2','3',"rrlkjfbfeP§§arn§§a dv§r§d§ ei§od §vi § e§ai§§ aedarn, vvidle,od vl eeai§na§ derazpyzfcc"],
-['5c97','fyae89br5i','Team_25','loc_clue_3','0t3sthvfby','loc_clue_1','4','3','1',"fvkrckiioIl§drvd§nr cn oais§e le,o§qz§e§dti on§s§i§ui  o'§§lan§svidsioaai§aoe§§nljep2ioes"],
-['5c97','0t3sthvfby','Team_25','loc_clue_1','dt20fpmrvf','loc_clue_6','5','1','6',"dcjlz6u8ePar§na dvrd eio§d§ vi §§ eai §aeda§§§rn, vv§idle,od §vl ee§§ain§a d§erzq32fztk"],
-['5c97','dt20fpmrvf','Team_25','loc_clue_6','u94kym9dj3','loc_clue_5','6','6','5',"pg4718qeoIl§dr§vdnr cn §oaise l§e,o§qzed§ti o§n§§siu§i  o§'lan§svids§ioaa§ia§oenlvc37eg1m"],
-['5c97','u94kym9dj3','Team_25','loc_clue_5','0000000000','Ci si vede in Villa','7','5','8',"4ves83zxeP§ar§na dvr§d §eiod v§i  eai aed§ar§n§§, vvidle,§od §§vl eeain§a de§§rebnealv8"],
-['upmz','dt20fpmrvf','Team_26','loc_clue_6','43wan6ynwi','loc_clue_4','1','6','4',"fjwp9f4je§Par§na §dvrd §ei§od vi§  eai aeda§rn, vvidl§e§,o§§d §vl§§ eeaina d§erfdzjjgge"],
-['upmz','43wan6ynwi','Team_26','loc_clue_4','0t3sthvfby','loc_clue_1','2','4','1',"7p4j5q5eoI§ld§rvdn§r c§n oais§e le,o§qzed§§ti onsiui § o§'lansv§idsioa§aiao§§en§lcxjakhkb"],
-['upmz','0t3sthvfby','Team_26','loc_clue_1','vhowtegapr','loc_clue_2','3','1','2',"08woegqaePar§§na dv§rd§§ §ei§od vi  ea§i aed§arn, §§vvi§dle,o§d vl eeaina§§ derfsbbwrr8"],
-['upmz','vhowtegapr','Team_26','loc_clue_2','u94kym9dj3','loc_clue_5','4','2','5',"m8wx873aoIldrvdnr cn oaise §§le§§,oqzedti §§onsiui§§  o'l§ans§vidsi§§oaaiao§e§n§l2ngp2qei"],
-['upmz','u94kym9dj3','Team_26','loc_clue_5','6xfu72yqju','loc_clue_7','5','5','7',"ymbffu1we§Parna dvr§d§§ eio§§d§ vi§ § eai aed§§arn, vvidle§,od v§l §§eeaina dergfexdo96"],
-['upmz','6xfu72yqju','Team_26','loc_clue_7','fyae89br5i','loc_clue_3','6','7','3',"1fvbqq4boI§ldrvdnr cn o§aise§ le,oqzedti ons§iu§i § o§'l§§§ans§§v§i§dsioaaiaoen§l79huqnji"],
-['upmz','fyae89br5i','Team_26','loc_clue_3','0000000000','Ci si vede in Villa','7','3','8',"bnkq95a0ePa§rn§a d§vrd e§iod vi  §eai §a§§e§darn, vvid§l§e,od vl§ §eeain§§a derok249c4g"],
-['an7t','u94kym9dj3','Team_27','loc_clue_5','fyae89br5i','loc_clue_3','1','5','3',"cwim63kyeParna§ dv§rd eiod§ §v§i § eai a§edar§n, vvi§dle,§§od v§l eeaina §de§§rgggb6wdo"],
-['an7t','fyae89br5i','Team_27','loc_clue_3','0t3sthvfby','loc_clue_1','2','3','1',"panbmas2o§Ildrvdnr §c§n§ §oaise le§,o§qzedti on§siu§i  §o'l§a§ns§v§i§dsioaaiaoenlddeilelw"],
-['an7t','0t3sthvfby','Team_27','loc_clue_1','43wan6ynwi','loc_clue_4','3','1','4',"ke7mquwmeParna d§vrd eiod§ v§i § eai §aedar§n,§§§ vv§i§d§§le,o§d vl eeaina§ derbx6ju5ou"],
-['an7t','43wan6ynwi','Team_27','loc_clue_4','dt20fpmrvf','loc_clue_6','4','4','6',"tp7zxz48o§Ildr§vd§§§§nr cn oais§e le,oqz§ed§ti onsiu§i  o'lan§svidsi§oaaia§§§oenl96fc2bb0"],
-['an7t','dt20fpmrvf','Team_27','loc_clue_6','6xfu72yqju','loc_clue_7','5','6','7',"bz4ib98aeParna dvrd §e§i§§od vi§  e§ai §aedar§n§§, v§v§idle,od vl §e§eaina§ der7ldfeqdt"],
-['an7t','6xfu72yqju','Team_27','loc_clue_7','vhowtegapr','loc_clue_2','6','7','2',"m3qba1mgoI§ldrv§dn§r cn§ oaise§§ §le,§oq§ze§dti onsiu§i § o'lansvid§sioaaia§oe§nl4vfvfbjq"],
-['an7t','vhowtegapr','Team_27','loc_clue_2','0000000000','Ci si vede in Villa','7','2','8',"fe7b6jv8e§Pa§rna §§§dv§rd eiod §vi§  eai a§ed§arn, vvidl§e,od§ vl eeain§§a §derdwleon4v"],
-['rrl8','0t3sthvfby','Team_28','loc_clue_1','dt20fpmrvf','loc_clue_6','1','1','6',"elkeftv3eParn§a dvrd§ eiod§§ vi  ea§i§ aeda§rn,§ v§v§idle,od vl§ ee§a§in§§a derogbcdjrr"],
-['rrl8','dt20fpmrvf','Team_28','loc_clue_6','6xfu72yqju','loc_clue_7','2','6','7',"c6fe0wtio§Ildr§§vd§§nr §cn §o§ais§e le§,oqzedti onsiu§i § o'la§§nsv§idsioaaiaoenlwdgjdwya"],
-['rrl8','6xfu72yqju','Team_28','loc_clue_7','fyae89br5i','loc_clue_3','3','7','3',"hz114dwpeParna §dvrd ei§od§ vi § §eai ae§darn,§ v§vidle§§,od §v§l eeai§n§a §derisicfeah"],
-['rrl8','fyae89br5i','Team_28','loc_clue_3','vhowtegapr','loc_clue_2','4','3','2',"bcbgpk9mo§§Il§d§rv§§§§dn§r§ cn oaise le,oqzedti onsi§ui  o§§'l§ans§vidsioaaiaoenla0zdnglm"],
-['rrl8','vhowtegapr','Team_28','loc_clue_2','u94kym9dj3','loc_clue_5','5','2','5',"1nfb1503e§§P§arn§a dvrd §eiod v§i  eai§ aedarn, §vvidle,§§§od §vl ee§ain§a§ dericjeagec"],
-['rrl8','u94kym9dj3','Team_28','loc_clue_5','43wan6ynwi','loc_clue_4','6','5','4',"eccb8qzsoIl§drvdn§r c§n oaise§ l§§e,o§qzed§ti o§nsiu§i  o'l§§ans§v§idsioaa§iaoenlzh3oe2wk"],
-['rrl8','43wan6ynwi','Team_28','loc_clue_4','0000000000','Ci si vede in Villa','7','4','8',"9qrbdod7ePa§r§na§ dv§rd eiod §v§§i§  ea§i§ aedarn,§§ vvidle,§od vl eeain§a de§rf82iaikd"],
-['9s9q','dt20fpmrvf','Team_29','loc_clue_6','fyae89br5i','loc_clue_3','1','6','3',"kcd560ese§§P§arna dv§rd§ eiod vi§ § eai §aedarn,§ §vvidl§e§,od vl eeai§§na de§rcfw6z2dk"],
-['9s9q','fyae89br5i','Team_29','loc_clue_3','vhowtegapr','loc_clue_2','2','3','2',"cofwzkryoIldrvd§nr §cn§§ oais§e le§,oq§§§z§edti §onsiu§i § o'lansvidsioa§aia§oenltscjblvs"],
-['9s9q','vhowtegapr','Team_29','loc_clue_2','6xfu72yqju','loc_clue_7','3','2','7',"2dagg2f2eP§arna dvrd e§§iod §vi§ § eai§ §§a§eda§rn, §vvidle,od v§l eeain§a d§er4rapxx5x"],
-['9s9q','6xfu72yqju','Team_29','loc_clue_7','43wan6ynwi','loc_clue_4','4','7','4',"x2aeq3f0o§I§ldrvdnr cn oai§se le,oqze§dti §§onsiui§  §§o'lans§vi§ds§ioa§§aia§oenluy50cbay"],
-['9s9q','43wan6ynwi','Team_29','loc_clue_4','u94kym9dj3','loc_clue_5','5','4','5',"dgwsc8iaeParn§a§ d§§vrd §eio§d §vi  eai§§ a§edar§n, vvidle,§od v§l eeaina d§§erhe01sdc0"],
-['9s9q','u94kym9dj3','Team_29','loc_clue_5','0t3sthvfby','loc_clue_1','6','5','1',"pe32an7noIldr§vdn§r c§n §oaise l§e§,§oqzedti o§nsiui § o'§§lansvids§§i§oaai§aoenl3qmbp46f"],
-['9s9q','0t3sthvfby','Team_29','loc_clue_1','0000000000','Ci si vede in Villa','7','1','8',"nbnnfu5le§Parna d§v§rd eiod §vi§§  eai aed§arn, v§vid§le,od§§ vl§ eea§i§na §derbgccbrrg"],
-['phg3','43wan6ynwi','Team_30','loc_clue_4','u94kym9dj3','loc_clue_5','1','4','5',"a82m91ofeP§ar§na dvrd §§§§eiod vi  eai ae§darn§, vv§§idl§e,od §§vl eeain§§a derc2hzaycy"],
-['phg3','u94kym9dj3','Team_30','loc_clue_5','6xfu72yqju','loc_clue_7','2','5','7',"4cu5iwnmoIldr§v§d§n§r cn oai§se le,oqz§e§dti§ §onsi§ui § o'lans§vidsioaa§ia§oen§la47or9kd"],
-['phg3','6xfu72yqju','Team_30','loc_clue_7','vhowtegapr','loc_clue_2','3','7','2',"cxefodiue§Parna d§v§r§§§§d eiod §vi  ea§i aedarn, v§vid§le§§,od vl ee§a§ina derzothgf3g"],
-['phg3','vhowtegapr','Team_30','loc_clue_2','0t3sthvfby','loc_clue_1','4','2','1',"r1n1lzj7oIld§rvd§§nr cn §oais§§§e l§e,oqz§edti§ o§nsiui§  o§'lansvidsioaa§§iaoenlzaz6ic3d"],
-['phg3','0t3sthvfby','Team_30','loc_clue_1','dt20fpmrvf','loc_clue_6','5','1','6',"3nv5etadePar§na §dvrd §ei§o§d vi  eai a§§edar§n§, vvidl§§e,o§d vl ee§ai§n§a der6qvdudvb"],
-['phg3','dt20fpmrvf','Team_30','loc_clue_6','fyae89br5i','loc_clue_3','6','6','3',"pfls1nwzoI§ldrvdnr §cn oaise §l§e,oqz§ed§ti §o§nsi§u§i§  o§'la§nsvidsioaaiaoe§n§lbu0lmod2"],
-['phg3','fyae89br5i','Team_30','loc_clue_3','0000000000','Ci si vede in Villa','7','3','8',"gfivp1sceParna§§§ §§dvrd eiod vi § eai§ ae§d§arn§, vv§idle,§§od vl§ eeaina §dere659h9tv"]];
-}
-</script>
+<script src="fetchData.js" type="text/javascript"></script>
+<script src="getQueryStringArray.js" type="text/javascript"></script>
+<script src="adjustColumn.js" type="text/javascript"></script>
+<script src="notifyUseOfHelp.js" type="text/javascript"></script>
+<script src="getTimeRemaining.js" type="text/javascript"></script>
+<script src="initializeClock.js" type="text/javascript"></script>
+<script src="findClueMatch.js" type="text/javascript"></script>
+<script src="updateSheet.js" type="text/javascript"></script>
+
 <script>
 
 // Ask for team's password
 var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
 // console.log('password inputted: ' + team_psw)
-
-function findClueMatch(ind_code, team_psw){
-  for(i = 0; i < all_matches.length; i++) {
-    if (all_matches[i][0] == team_psw && all_matches[i][1] == ind_code){
-      console.log('match found at: ' + all_matches[i])
-      return all_matches[i];
-    }
-  }
-  console.log('match not found in findClueMatch()')
-  return NaN
-}
-
-function getQueryStringArray(){
-    var assoc=[];
-    var items = window.location.search.substring(1).split('&');
-    for(var j = 0; j < items.length; j++) {
-       var a = items[j].split('='); assoc[a[0]] = a[1];
-    }
-    return assoc;
-}
-
-function adjustColumn(s){
-  s = s.slice(8,s.length-8).replace(/[§]/g,'');
-  console.log(s);
-  var k=s.length;
-  var s1 = [];
-  for (n=0; n<s.length; n=n+2){
-      s1[k]=s[n];
-      k = k-2;
-      }
-      k=k+1;
-  for (n=1; n<s.length; n=n+2){
-      s1[k]=s[n];
-      k = k+2;
-      }
-  s1=s1.join('').replace(/[*]/g,'');
-  return s1;
-}
 
  // FETCH DATA
  var all_matches = fetchData()
@@ -491,68 +247,43 @@ function adjustColumn(s){
  if (qs.ind !== 'undefined' && qs.ind) {
    match_results = findClueMatch(qs.ind, team_psw)
    if (match_results !== 'undefined' && match_results) {
+
      // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
-     var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
-     var data = {
-      team_name: match_results[2],
-      ["indizio_"+match_results[6]]: "1",
-      api_key:'vVMy5ukvxGRu6jrvpC5A',
-      api_secret:'EHcLf9fxyyy7iqCW63yEpBxpqNtwtMmYhnDRkTAF'
-      };
-      $.ajax({
-        url: sheetsuUrl+'/team_name/'+match_results[2],
-        data: data,
-        dataType: 'json',
-        type: 'PATCH',
-        success: function(data) { console.log(data); },
-        error:   function(data) { console.log(data); } // handling error response
-      });
-      // REDIRECT TO CLUE ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
-    //  url_next_ind = 'http://localhost:6888/indizi/' + // for testing
-    // // url_next_ind = 'http://www.guhu.website/indizi/' +   // for production
-    //                  match_results[4] + '.html' +
-    //                  '?team=' + match_results[2] +
-    //                  '&loc=' + match_results[3]
-    //  console.log('redirect to link: '+url_next_ind)
-    //  window.location.href = url_next_ind; // re-routing
+     updateSheet('1');
 
-    document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
-    document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
-    document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
+     document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
+     document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
+     document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
 
-    // make AIUTI buttons visible and implement logic
-    var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
-    var btn = document.getElementById("myBtn"); // Get the button that opens the modal
-    var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
-    btn.onclick = function() {
-      modalHelpme.style.display = "block";
-      btn.style.backgroundColor = "#000"
-      document.getElementById("modalHelpme-body").innerHTML =
+     // make AIUTI buttons visible and implement logic
+     var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
+     var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+     var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+     btn.onclick = function() {
+       modalHelpme.style.display = "block";
+       btn.style.backgroundColor = "#000"
+       document.getElementById("modalHelpme-body").innerHTML =
                       '<br />'+match_results[3]+'<br />';
-      notifyUseOfHelp('HelpMe');
-      }// When the user clicks the button, open the modal
-    span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
-    window.onclick = function(event) {// When the user clicks anywhere outside of the modal, close it
-        if (event.target == modalHelpme) { modalHelpme.style.display = "none";}
-    	}
-    // repeat for other button ('solution')
-    var modalSolution = document.getElementById('myModalSolution');
-    var btn2 = document.getElementById("myBtn2");
-    var span2 = document.getElementsByClassName("close")[1];
-    btn2.onclick = function() {
-      modalSolution.style.display = "block";
-      btn2.style.backgroundColor = "#000"
-      document.getElementById("modalSolution-body").innerHTML =
-                      '<br />'+match_results[3]+'<br />';
-      notifyUseOfHelp('Solution');
-      }
-    span2.onclick = function() { modalSolution.style.display = "none"; }
-    window.onclick = function(event) {
-        if (event.target == modalSolution) { modalSolution.style.display = "none";}
-    	}
-      // make buttons visible
-    var help_container = document.getElementById('help-container');
-    help_container.style.display = "block";
+       notifyUseOfHelp('HelpMe');
+     }// When the user clicks the button, open the modal
+     span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
+     window.onclick = function(event) { if (event.target == modalHelpme) { modalHelpme.style.display = "none";} }
+     // repeat for other button ('solution')
+     var modalSolution = document.getElementById('myModalSolution');
+     var btn2 = document.getElementById("myBtn2");
+     var span2 = document.getElementsByClassName("close")[1];
+     btn2.onclick = function() {
+       modalSolution.style.display = "block";
+       btn2.style.backgroundColor = "#000"
+       document.getElementById("modalSolution-body").innerHTML =
+                       '<br />'+match_results[3]+'<br />';
+       notifyUseOfHelp('Solution');
+     }
+     span2.onclick = function() { modalSolution.style.display = "none"; }
+     window.onclick = function(event) {if (event.target == modalSolution) { modalSolution.style.display = "none";}}
+     // make buttons visible
+     var help_container = document.getElementById('help-container');
+     help_container.style.display = "block";
   } else {
     document.getElementById('clue').innerHTML="Password non riconosciuta o location inesatta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
   }
@@ -581,8 +312,8 @@ function adjustColumn(s){
      var chart = new FusionCharts({
          type: 'bar2d',
          renderAt: 'chart-container',
-         width: '100%',
-         height: '900',
+         width: '90%',
+         height: '1000',
          dataFormat: 'json',
          dataSource: {
            "chart": {
@@ -606,8 +337,8 @@ function adjustColumn(s){
          "paletteColors": "#2AA992",
          "plotFillAlpha": "70",
          "usePlotGradientColor": "0",
-         "numberPrefix": "#",
-         "numberSuffix": "",
+        //  "numberPrefix": "#",
+        //  "numberSuffix": "",
          "bgcolor": "#FFFFFF", //"#202C3D",
          "bgalpha": "95",
          "canvasbgalpha": "0",
@@ -646,68 +377,4 @@ function adjustColumn(s){
 
  // make timeout clock visible after charts
  setTimeout(function() { clockdiv.style.display = "block"; }, 300);
-
-
-function notifyUseOfHelp(help_type){
-  var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
-  var data = {
-   team_name: match_results[2],
-   [help_type+'_'+match_results[6]]: "1",
-   api_key:'vVMy5ukvxGRu6jrvpC5A',
-   api_secret:'EHcLf9fxyyy7iqCW63yEpBxpqNtwtMmYhnDRkTAF'
-   };
-  console.log(help_type+'_'+match_results[6]);
-   $.ajax({
-     url: sheetsuUrl+'/team_name/'+match_results[2],
-     data: data,
-     dataType: 'json',
-     type: 'PATCH',
-     success: function(data) { console.log(data); },
-     error:   function(data) { console.log(data); } // handling error response
-   });
-}
-</script>
-
-<script>
-function getTimeRemaining(endtime) {
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 60);
-  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-  // var days = Math.floor(t / (1000 * 60 * 60 * 24));
-  return {
-    'total': t,
-    // 'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
-
-function initializeClock(id, endtime) {
-  var clock = document.getElementById(id);
-  // var daysSpan = clock.querySelector('.days');
-  var hoursSpan = clock.querySelector('.hours');
-  var minutesSpan = clock.querySelector('.minutes');
-  var secondsSpan = clock.querySelector('.seconds');
-
-  function updateClock() {
-    var t = getTimeRemaining(endtime);
-
-    // daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
-    }
-  }
-  updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
-}
-
-// var deadline = new Date(Date.parse(new Date()) + 2 * 60 * 60 * 1000);
-var deadline = 'December 27 2016 00:00:01 GMT+0100';
-initializeClock('clockdiv', deadline);
 </script>
