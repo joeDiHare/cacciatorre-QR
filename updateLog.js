@@ -3,6 +3,29 @@ function updateSheet(val){
   var API_KEY    = 'vVMy5ukvxGRu6jrvpC5A';
   var API_SECRET = 'EHcLf9fxyyy7iqCW63yEpBxqpNtwtMmYhnDRkTAF';
 
+  var data = {
+   Team_name: match_results[2],
+   Current_Position:match_results[6],
+   Current_Position_id:,
+   Next_clue:,
+   Next_clue_id:,
+   Used_Help:,
+   Used_Solution:,
+   Solved:,
+   Incorrect_psw:,
+   MAC:,
+   latitude:,
+   longitude
+   };
+   $.ajax({
+     url: sheetsuUrlLog,
+     headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
+     data: data,
+     dataType: 'json',
+     type: 'POST',
+     // success: function(data) { console.log(data); },
+     error:   function(data) { console.log(data); } // handling error response
+   });
 
    // jQuery snippet for changing HTML form into JSON
   (function ($) {
@@ -33,13 +56,8 @@ function updateSheet(val){
       dataType: 'json',
       type: 'POST',
 
-      // place for handling successful response
-      // showing (redirecting to) something like /thanks.html
-      // page could be a good idea
-      success: function(data) {
-        window.location.href = 'thank_you.html';
-      },
 
+      success: function(data) {}.
 
       error: function(data) {console.log(data);} // handling error response
     });
