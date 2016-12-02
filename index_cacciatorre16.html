@@ -12,8 +12,8 @@
 <!--  Add aiuti-->
 <div id=help-container class=help-container>
   <!-- <h3>Serv na man?</h3> -->
-    <button id="myBtn"  class='btn'>AIUTINO -10 punti</button>
-    <button id="myBtn2" class='btn'>SOLUTION -20 punti</button>
+    <button id="btn_helpme_id"  class='btn'>AIUTINO -10 punti</button>
+    <button id="btn_solution_id" class='btn'>SOLUTION -20 punti</button>
 </div>
 <!-- The Modal for Helpme-->
 <div id="myModalHelpme" class="modal">
@@ -32,7 +32,7 @@
   </div>
 </div>
 <!-- The Modal for Solution -->
-<div id="myModalSolution" class="modal">
+<div id="btns_aiuti_id" class="modal">
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">×</span>
@@ -231,174 +231,93 @@ h1{
 <script src="initializeClock.js"     type="text/javascript"></script>
 <script src="findClueMatch.js"       type="text/javascript"></script>
 <script src="updateSheet.js"         type="text/javascript"></script>
+<script src="makeChart.js"           type="text/javascript"></script>
+
 
 <script>
 // Ask for team's password
 var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
 // console.log('password inputted: ' + team_psw)
 
- // FETCH DATA
- var all_matches = fetchData()
+// FETCH DATA
+var all_matches = fetchData()
 
- // POPULATE CLUE IN HTML ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
- var qs = getQueryStringArray();
- var url_next_ind = '';
- if (qs.ind !== 'undefined' && qs.ind) {
+// POPULATE CLUE IN HTML ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
+var qs = getQueryStringArray();
+var url_next_ind = '';
+match_results = undefined;
+if (qs.ind !== 'undefined' && qs.ind) { match_results = findClueMatch(qs.ind, team_psw); }
 
-   match_results = findClueMatch(qs.ind, team_psw);
+var timeout_chart = 100;
+if (match_results !== 'undefined' && match_results){
+  // check that previous clue has been completed
+  var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
+  var API_KEY    = 'vVMy5ukvxGRu6jrvpC5A';
+  var API_SECRET = 'EHcLf9fxyyy7iqCW63yEpBxqpNtwtMmYhnDRkTAF';
+  var prev_clue_completed = true;
+  $.ajax({
+    // url: sheetsuUrl + searchQuery,
+    url: sheetsuUrl + '/team_name/' + match_results[2],
+    headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
+    dataType: 'json',
+    type: 'GET',
+    success: function(data) { //wait to get a response before continuing
+      prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
+      if (prev_clue_completed) {
 
-   // check that previous clue has been completed
-   var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
-   var API_KEY    = 'vVMy5ukvxGRu6jrvpC5A';
-   var API_SECRET = 'EHcLf9fxyyy7iqCW63yEpBxqpNtwtMmYhnDRkTAF';
-   var prev_clue_completed = true;
-   $.ajax({
-      // url: sheetsuUrl + searchQuery,
-      url: sheetsuUrl + '/team_name/' + match_results[2],
-      headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
-      dataType: 'json',
-      type: 'GET',
-      success: function(data) {
-        prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
-        if (match_results !== 'undefined' && match_results && prev_clue_completed) {
+        // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
+        updateSheet('1');
 
-          // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
-          updateSheet('1');
+        document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
+        document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
+        document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
 
-          document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
-          document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
-          document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
-
-          // make AIUTI buttons visible and implement logic
-          var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
-          var btn = document.getElementById("myBtn"); // Get the button that opens the modal
-          var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
-          btn.onclick = function() {
-            modalHelpme.style.display = "block";
-            btn.style.backgroundColor = "#000"
-            document.getElementById("modalHelpme-body").innerHTML =
-                           '<br />'+adjustColumn(match_results[10])+'<br />';
-            notifyUseOfHelp('HelpMe');
-          }// When the user clicks the button, open the modal for aiuti
-          span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
-          window.onclick = function(event) { if (event.target == modalHelpme) { modalHelpme.style.display = "none";} }
-          // repeat for other button ('solution')
-          var modalSolution = document.getElementById('myModalSolution');
-          var btn2 = document.getElementById("myBtn2");
-          var span2 = document.getElementsByClassName("close")[1];
-          btn2.onclick = function() {
-            modalSolution.style.display = "block";
-            btn2.style.backgroundColor = "#000"
-            document.getElementById("modalSolution-body").innerHTML =
-                            '<br />'+match_results[3]+'<br />';
-            notifyUseOfHelp('Solution');
+        // make AIUTI buttons visible and implement logic
+        var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
+        var btn_helpme = document.getElementById("btn_helpme_id"); // Get the button that opens the modal
+        var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+        btn_helpme.onclick = function() {
+          modalHelpme.style.display = "block";
+          btn_helpme.style.backgroundColor = "#000"
+          document.getElementById("modalHelpme-body").innerHTML =
+                         '<br />'+adjustColumn(match_results[10])+'<br />';
+          notifyUseOfHelp('HelpMe');
           }
-          span2.onclick = function() { modalSolution.style.display = "none"; }
-          window.onclick = function(event) {if (event.target == modalSolution) { modalSolution.style.display = "none";}}
-          // make buttons visible
-          var help_container = document.getElementById('help-container');
-          help_container.style.display = "block";
-       } else {
-         if (prev_clue_completed==false){
-           document.getElementById('clue').innerHTML="POSTO SBAGLIATO! <br /> Questo luogo   non e' la soluzione all'indovinello precedente.";
-         } else{
-           document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
-         }
-       }
+        span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
+        window.onclick = function(event) { if (event.target == modalHelpme) { modalHelpme.style.display = "none";} }
+        // repeat for other button ('solution')
+        var modalSolution = document.getElementById('btns_aiuti_id');
+        var btn_solution = document.getElementById("btn_solution_id");
+        var span2 = document.getElementsByClassName("close")[1];
+        btn_solution.onclick = function() {
+          modalSolution.style.display = "block";
+          btn_solution.style.backgroundColor = "#000"
+          document.getElementById("modalSolution-body").innerHTML =
+                          '<br />'+match_results[3]+'<br />';
+          notifyUseOfHelp('Solution');
+          }
+        span2.onclick = function() { modalSolution.style.display = "none"; }
+        window.onclick = function(event) {if (event.target == modalSolution) { modalSolution.style.display = "none";}}
+        // make buttons visible
+        var help_container = document.getElementById('help-container');
+        help_container.style.display = "block";
+      } else {
+        document.getElementById('clue').innerHTML="POSTO SBAGLIATO! <br /> Questo luogo   non e' la soluzione all'indovinello precedente.";
+      }
 
-        console.log('res: '+prev_clue_completed);},
-      error:   function(data) { prev_clue_completed = true;  console.log('error: '+data);} // handling error response
-    });
-
-console.log(match_results !== 'undefined' && match_results && prev_clue_completed)
-
+      makeChart();
+      // make timeout clock visible after charts
+      setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
+      },
+    error:   function(data) {
+      document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
+      console.log('error: '+data);
+      } // handling error response
+  });
+}else{
+    document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
+    makeChart();
+    // make timeout clock visible after charts
+    setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
  }
-
- var timeout_chart = 400;
- setTimeout(function() {
- // READ FROM SPREADSHEET & DISPLAY CHART ~~ ~~ ~~ ~~ ~~ ~~ ~~
- var spreadsheetId = "1hjM_5TLlXrg5Bi3VE3x7azqddlFmjHUgWsMmm5x9rNo";
- var url = "https://spreadsheets.google.com/feeds/list/"+spreadsheetId+"/od6/public/basic?alt=json";
- $.get({
-   url: url,
-   success: function(response) {
-     var data = response.feed.entry,
-         len = data.length,
-         i = 0,
-         parsedData = [];
-     for (i = 0; i < len; i++) {
-       parsedData.push({
-         label: data[i].title.$t,
-         value: data[i].content.$t.split(/[: ]+/).pop() // get last element
-       });
-     }
-     FusionCharts.ready(function() {
-     var chart = new FusionCharts({
-         type: 'bar2d',
-         renderAt: 'chart-container',
-         width: '90%',
-         height: '1000',
-         dataFormat: 'json',
-         dataSource: {
-           "chart": {
-         // caption configuration
-         "caption": "Indizi completati per squadra",
-         "captionFontBold": "0",
-         "captionFontSize": "20",
-         // x and y axes configuration
-         "xAxisName": "",
-         "xAxisNameFontSize": "18",
-         "xAxisNameFontBold": "0",
-         "yAxisName": "I n d i z i   R i s o l t i",
-         "yAxisNameFontSize": "25",
-         "yAxisNameFontBold": "0",
-         "setAdaptiveYMin": "1",
-         "showLimits": "1",
-         "yAxisMinValue":"0",
-         "yAxisMaxValue":"8",
-         // general chart configuration
-         "baseFont": "Open Sans",
-         "paletteColors": "#2AA992",
-         "plotFillAlpha": "70",
-         "usePlotGradientColor": "0",
-        //  "numberPrefix": "#",
-        //  "numberSuffix": "",
-         "bgcolor": "#FFFFFF", //"#202C3D",
-         "bgalpha": "95",
-         "canvasbgalpha": "0",
-         "basefontcolor": "#202C3D", //#F7F3E7
-         "showAlternateHGridColor": "0",
-         "divlinealpha": "50",
-         "divlinedashed": "0",
-         "rotateyaxisname": "1",
-         "canvasbordercolor": "#FFFFFF", //"#FFF",
-         "canvasborderthickness": ".3",
-         "canvasborderalpha": "100",
-         "showValues": "0",
-         "plotSpacePercent": "12",
-         "showPlotBorder": "0",
-         "plotBorderColor": "#FFFFFF", //"#2AA992",
-         "plotBorderThickness": "1",
-         "labelFontSize": "30",
-         "outCnvBaseFontSize": "30",
-         // tooltip configuration
-         "toolTipBgColor": "#000",
-         "toolTipPadding": "12",
-         "toolTipBorderRadius": "3",
-         "toolTipBorderThickness": "1",
-         "toolTipBorderColor": "#000000",//"#ccc",
-         "toolTipBgAlpha": "0",//60
-         "plotToolText": "<div class='plotToolText'>$dataValue indizi completati</div>"
-         },
-       "data": parsedData
-       }
-     })
-     .render();
-   });
- }
- });
- }, timeout_chart);
-
- // make timeout clock visible after charts
- setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
 </script>
