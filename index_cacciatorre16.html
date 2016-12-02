@@ -231,6 +231,7 @@ h1{
 <script src="initializeClock.js"     type="text/javascript"></script>
 <script src="findClueMatch.js"       type="text/javascript"></script>
 <script src="updateSheet.js"         type="text/javascript"></script>
+<script src="updateLog.js"           type="text/javascript"></script>
 <script src="makeChart.js"           type="text/javascript"></script>
 
 
@@ -261,7 +262,7 @@ if (match_results !== 'undefined' && match_results){
     headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
     dataType: 'json',
     type: 'GET',
-    success: function(data) { //wait to get a response before continuing
+    success: function(data) { //wait for a response before continuing
       prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
       if (prev_clue_completed) {
 
