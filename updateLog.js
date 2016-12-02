@@ -27,7 +27,7 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
        'Solved': solved,
        'Incorrect_place': incorrect_place,
        'Incorrect_psw': incorrect_psw,
-       'IP':val.ip,
+       'IP': val.ip,
        'latitude':latitude,
        'longitude':longitude,
        'accuracy':accuracy
