@@ -63,6 +63,8 @@
     <div class="smalltext">Seconds</div>
   </div>
 </div>
+<div id="capa"></div>
+<div id="mapContainer"></div>
 
 <!--  STYLE  -->
 <style>
@@ -222,6 +224,7 @@ h1{
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.0.0-alpha1.js"></script> -->
 <script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkf003a1BHS3n1pjBGU7Vt-NPtX8bOS9U"></script>
 
 <script src="fetchData.js"           type="text/javascript"></script>
 <script src="getQueryStringArray.js" type="text/javascript"></script>
@@ -234,6 +237,18 @@ h1{
 <script src="updateLog.js"           type="text/javascript"></script>
 <script src="makeChart.js"           type="text/javascript"></script>
 
+<script type="text/javascript">
+// if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position){
+//     var latitude  = position.coords.latitude;
+//     var longitude = position.coords.longitude;
+//     var accuracy  = position.coords.accuracy;
+//     },function error(msg){alert('Please enable your GPS position future.');
+//   }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
+// }else {
+//     alert("Geolocation API is not supported in your browser.");
+// }
+</script>
 
 <script>
 // Ask for team's password
@@ -259,7 +274,7 @@ if (match_results !== 'undefined' && match_results){
   $.ajax({
     // url: sheetsuUrl + searchQuery,
     url: sheetsuUrl + '/team_name/' + match_results[2],
-    headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
+    // headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
     dataType: 'json',
     type: 'GET',
     success: function(data) { //wait for a response before continuing
@@ -302,8 +317,12 @@ if (match_results !== 'undefined' && match_results){
         // make buttons visible
         var help_container = document.getElementById('help-container');
         help_container.style.display = "block";
+        updateLog(0,0,1,0,0); // log: solved
+
       } else {
         document.getElementById('clue').innerHTML="POSTO SBAGLIATO! <br /> Questo luogo   non e' la soluzione all'indovinello precedente.";
+        updateLog(0,0,0,1,0); // log: incorrect_place
+
       }
 
       makeChart();
@@ -312,6 +331,8 @@ if (match_results !== 'undefined' && match_results){
       },
     error:   function(data) {
       document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
+      updateLog(0,0,0,0,1); // log: incorrect_place
+
       console.log('error: '+data);
       } // handling error response
   });

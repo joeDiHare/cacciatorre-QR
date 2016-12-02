@@ -9,11 +9,16 @@ function notifyUseOfHelp(help_type){
   console.log(help_type+'_'+match_results[6]);
    $.ajax({
      url: sheetsuUrl+'/team_name/'+match_results[2],
-     headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
+    //  headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
      data: data,
      dataType: 'json',
      type: 'PATCH',
-    //  success: function(data) { console.log(data); },
+     success: function(data) { if(help_type=='HelpMe'){
+                                  updateLog(1,0,0,0,0); // log: used_help
+                                }else{
+                                  updateLog(0,1,0,0,0); // log: used_solution
+                                }
+                              },
      error:   function(data) { console.log(data); } // handling error response
    });
 }

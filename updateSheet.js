@@ -8,7 +8,7 @@ function updateSheet(val){
    };
    $.ajax({
      url: sheetsuUrl+'/team_name/'+match_results[2],
-     headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
+    //  headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
      data: data,
      dataType: 'json',
      type: 'PATCH',
