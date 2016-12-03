@@ -20,18 +20,12 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
       dataLog,
       function(data) { dataLog['IP'] = data.ip; }); // console.log(JSON.stringify(data, null, 2));
 
-// Try geolocation
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-    	browserGeolocationSuccess,
-      browserGeolocationFail,
-      {maximumAge: 2*60*1000, timeout: 5000, enableHighAccuracy: true});
-  }
   var tryAPIGeolocation = function() {
 	jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC3lqec8rY4P221IG6LF5skEiyP9j1L_C4", function(success) {
 		apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
     console.log("API Geolocation made it! \n\n"+coords.latitude);
     // document.getElementById('clue').innerHTML+="API geolocation made it!\n\n lat:"+coords.latitude;
+
   })
   .fail(function(err) {
     console.log("API Geolocation error! \n\n"+err);
@@ -45,30 +39,40 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
     //  document.getElementById('clue').innerHTML+="API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude;
      writeLog(position);
   };
+
   var browserGeolocationSuccess = function(position) {
 	   console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
     //  document.getElementById('clue').innerHTML+="Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude;
      writeLog(position);
   };
+
   var browserGeolocationFail = function(error) {
-    tryAPIGeolocation()
-    // switch (error.code) {
-    //   case error.TIMEOUT:
-    //     console.log("Browser geolocation error !\n\nTimeout.");
-    //     // document.getElementById('clue').innerHTML+="Browser geolocation error !\n\nTimeout.";
-    //     // position.coords.latitude  = 0; position.coords.longitude = 0; position.coords.accuracy  = 0;
-    //     writeLog(position);
-    //     break;
-    //   case error.PERMISSION_DENIED:
-    //     if(error.message.indexOf("Only secure origins are allowed") == 0) {
-    //       tryAPIGeolocation();
-    //     }
-    //     break;
-    //   case error.POSITION_UNAVAILABLE:
-    //     console.log("Browser geolocation error !\n\nPosition unavailable.");
-    //     document.getElementById('clue').innerHTML+="Browser geolocation error !\n\nPosition unavailable.";
-    //     break;
-    // }
+    switch (error.code) {
+      case error.TIMEOUT:
+        console.log("Browser geolocation error !\n\nTimeout.");
+        // document.getElementById('clue').innerHTML+="Browser geolocation error !\n\nTimeout.";
+        // position.coords.latitude  = 0; position.coords.longitude = 0; position.coords.accuracy  = 0;
+        writeLog(position);
+        break;
+      case error.PERMISSION_DENIED:
+        if(error.message.indexOf("Only secure origins are allowed") == 0) {
+          tryAPIGeolocation();
+        }
+        break;
+      case error.POSITION_UNAVAILABLE:
+        console.log("Browser geolocation error !\n\nPosition unavailable.");
+        // document.getElementById('clue').innerHTML+="Browser geolocation error !\n\nPosition unavailable.";
+        writeLog(position);
+        break;
+    }
+  };
+  var tryGeolocation = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+      	browserGeolocationSuccess,
+        browserGeolocationFail,
+        {maximumAge: 2*60*1000, timeout: 5000, enableHighAccuracy: true});
+    }
   };
 
   var writeLog = function(position){
@@ -87,5 +91,7 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
       error:   function(datam) { console.log(datam); document.getElementById('clue').innerHTML+='err:'+datam;} // handling error response
     });
   }
+
+  tryGeolocation();
 
 } //EoF
