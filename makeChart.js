@@ -28,12 +28,12 @@ function makeChart(){
           // caption configuration
           "caption": "Indizi completati per squadra",
           "captionFontBold": "0",
-          "captionFontSize": "20",
+          "captionFontSize": "23",
           // x and y axes configuration
           "xAxisName": "",
           "xAxisNameFontSize": "18",
           "xAxisNameFontBold": "0",
-          "yAxisName": "I n d i z i   R i s o l t i",
+          "yAxisName": "",//"I n d i z i   R i s o l t i",
           "yAxisNameFontSize": "25",
           "yAxisNameFontBold": "0",
           "setAdaptiveYMin": "1",
