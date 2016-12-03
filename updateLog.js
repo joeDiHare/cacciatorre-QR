@@ -28,9 +28,9 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
        'Incorrect_place': incorrect_place,
        'Incorrect_psw': incorrect_psw,
        'IP': val.ip,
-       'latitude':latitude,
+       'latitude': latitude,
        'longitude':longitude,
-       'accuracy':accuracy
+       'accuracy': accuracy
        };
        $.ajax({
          url: sheetsuUrlLog,
@@ -43,10 +43,12 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
          error:   function(data) { console.log(data); } // handling error response
        });
 
-      },function error(msg){alert('Please enable your GPS position future.');
+     },function error(msg){
+       document.getElementById('clue').innerHTML=msg.code+' '+msg.message;
+       console.log(msg); alert('Abilita il GPS please :)');
     }, {maximumAge:600000, timeout:5000, enableHighAccuracy: true});
   }else {
-      alert("Geolocation API is not supported in your browser.");
+      alert("GPS non e' supportato dal tuo browser :(");
   }
 
 
