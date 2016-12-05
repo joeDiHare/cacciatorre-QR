@@ -253,7 +253,7 @@ var qs = getQueryStringArray(); // get clue's code
 var match_results = undefined;
 if (qs.ind !== 'undefined' && qs.ind) { match_results = findClueMatch(qs.ind, team_psw); }
 
-var timeout_chart = 100;
+var timeout_chart = 200;
 if (match_results !== 'undefined' && match_results){
   // check that previous clue has been completed
   var sheetsuUrl = "https://sheetsu.com/apis/v1.0/0c52c1f265dc";
@@ -267,19 +267,23 @@ if (match_results !== 'undefined' && match_results){
     type: 'GET',
     success: function(data) { //wait for a response before continuing
       prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
-      if (prev_clue_completed) {
+      // console.log(prev_clue_completed);
+      // console.log(parseInt(match_results[6])==1);
+      // console.log(parseInt(match_results[6]));
+      // console.log(prev_clue_completed || parseInt(match_results[6])==1);
+      if (prev_clue_completed || parseInt(match_results[6])==1) {
 
         // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
         updateSheet('1');
 
         document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
         document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
-        document.getElementById('clue').innerHTML=adjustColumn(match_results[9]);
+        document.getElementById('clue').innerHTML='&ldquo;'+adjustColumn(match_results[9])+'&rdquo;';
 
         // make AIUTI buttons visible and implement logic
         var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
-        var btn_helpme = document.getElementById("btn_helpme_id"); // Get the button that opens the modal
-        var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+        var btn_helpme  = document.getElementById("btn_helpme_id"); // Get the button that opens the modal
+        var span        = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
         btn_helpme.onclick = function() {
           modalHelpme.style.display = "block";
           btn_helpme.style.backgroundColor = "#000"
@@ -291,8 +295,8 @@ if (match_results !== 'undefined' && match_results){
         window.onclick = function(event) { if (event.target == modalHelpme) { modalHelpme.style.display = "none";} }
         // repeat for other button ('solution')
         var modalSolution = document.getElementById('btns_aiuti_id');
-        var btn_solution = document.getElementById("btn_solution_id");
-        var span2 = document.getElementsByClassName("close")[1];
+        var btn_solution  = document.getElementById("btn_solution_id");
+        var span2         = document.getElementsByClassName("close")[1];
         btn_solution.onclick = function() {
           modalSolution.style.display = "block";
           btn_solution.style.backgroundColor = "#000"
