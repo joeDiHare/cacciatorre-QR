@@ -68,14 +68,14 @@
 <!--  STYLE  -->
 <style>
 .info_clue{
-    font-size: 15px;
+    font-size: 10px;
     margin-top: 8px;
     color: #A9A9A9;
   }
 .container_clue{
       font-size: 58px;
       margin-top: 55px;
-      margin-bottom: 55px;
+      margin-bottom: 65px;
     }
 .plotToolText{
   font-size: 14px;
@@ -103,7 +103,7 @@
     position: relative;
     background-color: #fefefe;
     margin: auto;
-    padding: 0;
+    padding: 10;
     border: 1px solid #888;
     width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -315,7 +315,7 @@ if (match_results !== 'undefined' && match_results){
 
       makeChart();
       // make timeout clock visible after charts
-      setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
+      setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+600);
       },
     error:   function(data) {
       document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";

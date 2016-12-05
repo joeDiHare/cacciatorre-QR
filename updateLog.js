@@ -87,8 +87,8 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
       data: dataLog,
       dataType: 'json',
       type: 'POST',
-      success: function(datam) { console.log(datam); document.getElementById('clue').innerHTML+='ok'+datam;},
-      error:   function(datam) { console.log(datam); document.getElementById('clue').innerHTML+='err:'+datam;} // handling error response
+      success: function(datam) { console.log(datam);},
+      error:   function(datam) { console.log(datam);} // handling error response
     });
   }
 
