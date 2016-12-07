@@ -22,14 +22,13 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
       function(data) { dataLog['IP'] = data.ip; }); // console.log(JSON.stringify(data, null, 2));
 
   var browserGeolocationSuccess = function(position) {
-	   console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+	   console.log("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude+ "\nacc = " + position.coords.accuracy);
+     console.log(position);
     //  document.getElementById('clue').innerHTML+="Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude;
      writeLog(position);
   };
   var browserGeolocationFail = function(error) {
     console.log("Browser geolocation error: >> "+error.message);
-    console.log("uuu"+error)
-    console.log("uuu"+error)
     tryAPIGeolocation();
   };
   var tryAPIGeolocation = function() {
