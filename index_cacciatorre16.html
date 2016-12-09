@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<!-- <meta name=viewport content="width=device-width, initial-scale=1"> -->
+
 <h1>CacciaTorre 2016</h1>
 <!-- <p><i>switcher</i></p> -->
 <div class="info_clue">
@@ -12,8 +14,8 @@
 <!--  Add aiuti-->
 <div id=help-container class=help-container>
   <!-- <h3>Serv na man?</h3> -->
-    <button id="btn_helpme_id"  class='btn'>AIUTINO -10 punti</button>
-    <button id="btn_solution_id" class='btn'>SOLUTION -20 punti</button>
+    <button id="btn_helpme_id"   class='btn'>SUGGERIMENTO<br /><small>-10 punti</small></button>
+    <button id="btn_solution_id" class='btn'>LA SOLUZIONE<br /><small>-20 punti</small></button>
 </div>
 <!-- The Modal for Helpme-->
 <div id="myModalHelpme" class="modal">
@@ -244,8 +246,8 @@ h1{
 
 <script>
 // Ask for team's password
-var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
-// team_psw='qzmo' // console.log('password inputted: ' + team_psw)
+// var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
+team_psw='qzmo' // console.log('password inputted: ' + team_psw)
 
 // FETCH DATA
 var all_matches = fetchData()
