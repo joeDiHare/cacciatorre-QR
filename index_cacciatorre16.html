@@ -11,6 +11,9 @@
 <div class="container_clue">
   <div id="clue"></div>
 </div>
+<div class="oggetti">
+  <div id="oggetto"></div>
+</div>
 <!--  Add aiuti-->
 <div id=help-container class=help-container>
   <!-- <h3>Serv na man?</h3> -->
@@ -77,6 +80,11 @@
 .container_clue{
       font-size: 58px;
       margin-top: 55px;
+      margin-bottom: 25px;
+    }
+.oggetti{
+      font-size: 38px;
+      margin-top: 15px;
       margin-bottom: 65px;
     }
 .plotToolText{
@@ -280,9 +288,10 @@ if (match_results !== 'undefined' && match_results){
         // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
         updateSheet('1');
 
-        document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: '+
+        document.getElementById('loc_div').innerHTML =adjustColumn(match_results[3]);//'Posizione Attuale: '+
         document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
         document.getElementById('clue').innerHTML='&ldquo;'+adjustColumn(match_results[9])+'&rdquo;';
+        document.getElementById('oggetto').innerHTML='OGGETTO: '+adjustColumn(match_results[11]);
 
         // make AIUTI buttons visible and implement logic
         var modalHelpme = document.getElementById('myModalHelpme'); // Get the modal
@@ -316,7 +325,7 @@ if (match_results !== 'undefined' && match_results){
         updateLog(0,0,1,0,0); // log: solved
 
       } else {
-        document.getElementById('clue').innerHTML="POSTO SBAGLIATO! <br /> Questo luogo   non e' la soluzione all'indovinello precedente.";
+        document.getElementById('clue').innerHTML="POSTO SBAGLIATO! <br /> Questo luogo non e' la soluzione all'indovinello precedente.";
         updateLog(0,0,0,1,0); // log: incorrect_place
 
       }
@@ -335,6 +344,8 @@ if (match_results !== 'undefined' && match_results){
 }else{
     document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
     makeChart();
+    updateLog(0,0,0,0,1); // log: incorrect_place
+    
     // make timeout clock visible after charts
     setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
  }
