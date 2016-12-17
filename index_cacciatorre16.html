@@ -314,7 +314,7 @@ if (match_results !== 'undefined' && match_results){
           modalSolution.style.display = "block";
           btn_solution.style.backgroundColor = "#000"
           document.getElementById("modalSolution-body").innerHTML =
-                          '<br />'+match_results[3]+'<br />';
+                          '<br />'+adjustColumn(match_results[3])+'<br />';
           notifyUseOfHelp('Solution');
           }
         span2.onclick = function() { modalSolution.style.display = "none"; }
