@@ -251,11 +251,11 @@ h1{
 <script src="updateLog.js"           type="text/javascript"></script>
 <script src="makeChart.js"           type="text/javascript"></script>
 
-
+<!--  Main script -->
 <script>
 // Ask for team's password
 // var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
-team_psw='qzmo' // console.log('password inputted: ' + team_psw)
+team_psw='v7oj' // console.log('password inputted: ' + team_psw)
 
 // FETCH DATA
 var all_matches = fetchData()
@@ -345,7 +345,7 @@ if (match_results !== 'undefined' && match_results){
     document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
     makeChart();
     updateLog(0,0,0,0,1); // log: incorrect_place
-    
+
     // make timeout clock visible after charts
     setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
  }

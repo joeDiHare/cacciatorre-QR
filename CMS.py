@@ -64,7 +64,7 @@ def main():
     # 'https://docs.google.com/spreadsheets/d/  /edit#gid=385226661'
     spreadsheetId = '1hjM_5TLlXrg5Bi3VE3x7azqddlFmjHUgWsMmm5x9rNo'#'
     # spreadsheetId = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
-    rangeName = 'Sheet1!A1:AC'
+    rangeName = 'Sheet1!A2:BJ'
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
@@ -81,7 +81,7 @@ def main():
             a.writerows(values)
 
     # Do 2nd sheet (LOG)
-    rangeName2 = 'LOG!A1:O'
+    rangeName2 = 'LOG!A2:O'
     result2 = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName2).execute()
     values2 = result2.get('values', [])
@@ -96,6 +96,8 @@ def main():
         with open('log_cacciaiot.csv', 'w', newline='') as fp:
             a = csv.writer(fp, delimiter=',')
             a.writerows(values2)
+
+    return 'ok!'
 if __name__ == '__main__':
     main()
 
