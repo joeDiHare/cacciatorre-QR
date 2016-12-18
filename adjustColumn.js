@@ -1,4 +1,5 @@
 function adjustColumn(s){
+  return s
   s = s.slice(8,s.length-8).replace(/[§]/g,'');
   console.log(s);
   var k=s.length;

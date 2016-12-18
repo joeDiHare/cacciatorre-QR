@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- <meta name=viewport content="width=device-width, initial-scale=1"> -->
+
+<h1>CacciaTorre 2016</h1>
+<!-- <p><i>switcher</i></p> -->
+<div class="info_clue">
+  <div id="loc_div"></div>
+  <div id="team_div"></div>
+</div>
+<div class="container_clue">
+  <div id="clue"></div>
+</div>
+<div class="oggetti">
+  <div id="oggetto"></div>
+</div>
+<!--  Add aiuti-->
+<div id=help-container class=help-container>
+  <!-- <h3>Serv na man?</h3> -->
+    <button id="btn_helpme_id"   class='btn'>SUGGERIMENTO<br /><small>-5 punti</small></button>
+    <button id="btn_solution_id" class='btn'>LA SOLUZIONE<br /><small>-10 punti</small></button>
+</div>
+<!-- The Modal for Helpme-->
+<div id="myModalHelpme" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Aiuto: HELP ME</h2>
+    </div>
+    <div id="modalHelpme-body" class="modal-body">
+      <p>help</p>
+    </div>
+    <div class="modal-footer">
+      <h3>10 punti verranno sottratti per questo aiuto alla fine della caccia.</h3>
+    </div>
+  </div>
+</div>
+<!-- The Modal for Solution -->
+<div id="btns_aiuti_id" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Aiuto: SOLUTION</h2>
+    </div>
+    <div id="modalSolution-body" class="modal-body">
+      <p>solution</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Un totale di 20 punti verranno sottratti per questo indizio alla fine della caccia.</h3>
+    </div>
+  </div>
+</div>
+<!-- <p>Leaderboard</p> -->
+<div id="chart-container"></div>
+<!-- <p>remaning time:</p> -->
+<div id="clockdiv">
+  <div>
+    <span class="hours"></span>
+    <div class="smalltext">&nbsp;&nbsp;&nbsp;Hours&nbsp;&nbsp;&nbsp;</div>
+  </div>
+  <div>
+    <span class="minutes"></span>
+    <div class="smalltext">&nbsp;Minutes&nbsp;</div>
+  </div>
+  <div>
+    <span class="seconds"></span>
+    <div class="smalltext">&nbsp;Seconds&nbsp;</div>
+  </div>
+</div>
+
+
+<!--  STYLE  -->
+<style>
+.info_clue{
+    font-size: 10px;
+    margin-top: 8px;
+    color: #A9A9A9;
+  }
+.container_clue{
+      font-size: 58px;
+      margin-top: 55px;
+      margin-bottom: 25px;
+    }
+.oggetti{
+      font-size: 38px;
+      margin-top: 15px;
+      margin-bottom: 65px;
+    }
+.plotToolText{
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+#chart-container{
+  margin-top: 80px;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 48px;
+    font-weight: bold;
+}
+.btn {
+	background-color:#2AA992;//#44c767;
+	-moz-border-radius:26px;
+	-webkit-border-radius:26px;
+	border-radius:26px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	padding:12px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+  float: center;
+}
+.btn:hover {
+	background-color:#000;
+}
+.btn:active {
+	position:relative;
+	top:1px;
+}
+.help-container{
+  display: none; /* Hidden by default */
+  margin-top: 60px;
+  float: center;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+.modal-body {
+  padding: 2px 16px;
+  font-size: 40px;
+}
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+body{
+  font-family: sans-serif;
+  text-align: center;
+}
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 45px;
+  margin: 40px 0px 20px;
+  text-align: center;
+  /*background: #00ECB9;*/
+  font-family: sans-serif;
+}
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 50px;
+    display: none; /* Hidden by default */
+    margin-top: 40px;
+}
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+.smalltext{
+    padding-top: 5px;
+    font-size: 28px;
+}
+.team-div{
+  text-align: left;
+  font-size: 28px;
+}
+.loc-div {
+  text-align: right;
+  font-size: 28px;
+}
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script src="fetchData.js"           type="text/javascript"></script>
+<script src="findClueMatch.js"       type="text/javascript"></script>
+
+
+<!--  Main script -->
+<script>
+// Ask for team's password
+var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
+// team_psw='llll' // console.log('password inputted: ' + team_psw)
+var all_matches = fetchData()
+match_results = findClueMatch('0000000000', team_psw)
+
+if (match_results !== 'undefined' && match_results){
+  document.getElementById('clue').innerHTML="Benvenuti "+match_results[2]+"! <br /> Questo dispositivo e' a posto!"
+  document.getElementById('oggetto').innerHTML="Se NON sei "+match_results[2]+", comunicalo agli amministratori."
+
+}else{
+  document.getElementById('clue').innerHTML="Password sbagliata."
+}
+</script>

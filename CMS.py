@@ -74,7 +74,7 @@ def main():
     else:
         # for row in values:
             # Print columns A and E, which correspond to indices 0 and 4.
-            # print('%s, %s' % (row[0], row[4]))
+            # print('%s, %s' % (row[0], row[-1]))
         import csv
         with open('res_cacciaiot.csv', 'w', newline='') as fp:
             a = csv.writer(fp, delimiter=',')
