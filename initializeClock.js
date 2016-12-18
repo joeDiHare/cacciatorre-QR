@@ -9,7 +9,7 @@ function initializeClock(id, endtime) {
     var t = getTimeRemaining(endtime);
 
     // daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    hoursSpan.innerHTML   = ('0' + t.hours).slice(-2);
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
@@ -22,5 +22,5 @@ function initializeClock(id, endtime) {
 }
 
 // var deadline = new Date(Date.parse(new Date()) + 2 * 60 * 60 * 1000);
-var deadline = 'December 27 2016 00:00:01 GMT+0100';
+var deadline = 'December 20 2016 20:44:01 GMT+0100';
 initializeClock('clockdiv', deadline);

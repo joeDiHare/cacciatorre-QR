@@ -253,6 +253,12 @@ h1{
 
 <!--  Main script -->
 <script>
+// var deadline = 'December 27 2016 00:30:01 GMT+0100';
+var deadline = 'December 20 2016 20:44:01 GMT+0100';
+if (Math.floor((Date.parse(deadline) - Date.parse(new Date()) / (1000 * 60 * 60)) % 24)>=0){
+console.log(Math.floor((Date.parse(deadline) - Date.parse(new Date()) / 1000) % 60));
+console.log(deadline);
+
 // Ask for team's password
 var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
 // team_psw='v7oj' // console.log('password inputted: ' + team_psw)
@@ -279,12 +285,12 @@ if (match_results !== 'undefined' && match_results){
     type: 'GET',
     success: function(data) { //wait for a response before continuing
       // prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
-      prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[7])-1).toString()];
+      prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
       console.log(prev_clue_completed);
-      console.log(parseInt(match_results[7])==1);
-      console.log(parseInt(match_results[7]));
-      console.log(prev_clue_completed || parseInt(match_results[7])==1);
-      if (prev_clue_completed || parseInt(match_results[7])==1) {
+      console.log(parseInt(match_results[6])==1);
+      console.log(parseInt(match_results[6]));
+      console.log(prev_clue_completed || parseInt(match_results[6])==1);
+      if (prev_clue_completed || parseInt(match_results[6])==1) {
 
         // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
         updateSheet('1');
@@ -350,4 +356,9 @@ if (match_results !== 'undefined' && match_results){
     // make timeout clock visible after charts
     setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
  }
+
+} else{
+  document.getElementById('clue').innerHTML="La caccia e' finita! <br /> Torna alla base in Villa comunale!";
+};
+
 </script>
