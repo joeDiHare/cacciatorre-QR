@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90e81a64-c93c-46e1-9504-41acab145274" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMS.py" afterPath="$PROJECT_DIR$/CMS.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index_cacciatorre16.html" afterPath="$PROJECT_DIR$/index_cacciatorre16.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/updateLog.js" afterPath="$PROJECT_DIR$/updateLog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index_cacciatorre16_test.html" afterPath="$PROJECT_DIR$/index_cacciatorre16_test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/initializeClock.js" afterPath="$PROJECT_DIR$/initializeClock.js" />
     </list>
     <ignored path="cacciatorre-QR.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -289,6 +289,9 @@
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

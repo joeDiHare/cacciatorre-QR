@@ -241,6 +241,7 @@ h1{
 <script src="fusioncharts/fusioncharts.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkf003a1BHS3n1pjBGU7Vt-NPtX8bOS9U"></script>
 <script src="fetchData.js"           type="text/javascript"></script>
+<script src="global.js"              type="text/javascript"></script>
 <script src="getQueryStringArray.js" type="text/javascript"></script>
 <script src="adjustColumn.js"        type="text/javascript"></script>
 <script src="notifyUseOfHelp.js"     type="text/javascript"></script>
@@ -254,9 +255,10 @@ h1{
 <!--  Main script -->
 <script>
 // var deadline = 'December 27 2016 00:30:01 GMT+0100';
-var deadline = 'December 20 2016 20:44:01 GMT+0100';
-if (Math.floor((Date.parse(deadline) - Date.parse(new Date()) / (1000 * 60 * 60)) % 24)>=0){
-console.log(Math.floor((Date.parse(deadline) - Date.parse(new Date()) / 1000) % 60));
+if (Date.parse(deadline)>Date.parse(new Date())){
+console.log(Math.floor((Date.parse(deadline) - Date.parse(new Date()) / (1000 * 60 * 60)) % 24));
+console.log(Date.parse(deadline));
+console.log(Date.parse(new Date()).toString())
 console.log(deadline);
 
 // Ask for team's password
