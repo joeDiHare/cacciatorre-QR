@@ -235,14 +235,12 @@ h1{
 }
 </style>
 
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
-<!-- <script src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script> -->
 <script src="fusioncharts/fusioncharts.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkf003a1BHS3n1pjBGU7Vt-NPtX8bOS9U"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkf003a1BHS3n1pjBGU7Vt-NPtX8bOS9U"></script> -->
 <script src="fetchData.js"           type="text/javascript"></script>
 <script src="global.js"              type="text/javascript"></script>
-<script src="getQueryStringArray.js" type="text/javascript"></script>
+<!-- <script src="getQueryStringArray.js" type="text/javascript"></script> -->
 <script src="adjustColumn.js"        type="text/javascript"></script>
 <script src="notifyUseOfHelp.js"     type="text/javascript"></script>
 <script src="getTimeRemaining.js"    type="text/javascript"></script>
@@ -254,22 +252,22 @@ h1{
 
 <!--  Main script -->
 <script>
-// var deadline = 'December 27 2016 00:30:01 GMT+0100';
 if (Date.parse(deadline)>Date.parse(new Date())){
-// console.log(Math.floor((Date.parse(deadline) - Date.parse(new Date()) / (1000 * 60 * 60)) % 24));
-// console.log(Date.parse(deadline));
-// console.log(Date.parse(new Date()).toString())
-// console.log(deadline);
 
 // Ask for team's password
 var team_psw = prompt("Cacciatorre 2016 \nImmetti la password della tua squadra:", "");
-// team_psw='v7oj' // console.log('password inputted: ' + team_psw)
+// team_psw='llll' // console.log('password inputted: ' + team_psw)
 
 // FETCH DATA
 var all_matches = fetchData()
 
 // POPULATE CLUE IN HTML ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
-var qs = getQueryStringArray(); // get clue's code
+var qs=[];
+var items = window.location.search.substring(1).split('&');
+for(var j = 0; j < items.length; j++) {
+   var a = items[j].split('='); qs[a[0]] = a[1];
+}
+
 var match_results = undefined;
 if (qs.ind !== 'undefined' && qs.ind) { match_results = findClueMatch(qs.ind, team_psw); }
 
@@ -286,7 +284,6 @@ if (match_results !== 'undefined' && match_results){
     dataType: 'json',
     type: 'GET',
     success: function(data) { //wait for a response before continuing
-      // prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
       prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
       console.log(prev_clue_completed);
       console.log(parseInt(match_results[6])==1);
