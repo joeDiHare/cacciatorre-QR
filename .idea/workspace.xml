@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="90e81a64-c93c-46e1-9504-41acab145274" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index_cacciatorre16.html" afterPath="$PROJECT_DIR$/index_cacciatorre16.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index_cacciatorre16_test.html" afterPath="$PROJECT_DIR$/index_cacciatorre16_test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/initializeClock.js" afterPath="$PROJECT_DIR$/initializeClock.js" />
-    </list>
+    <list default="true" id="90e81a64-c93c-46e1-9504-41acab145274" name="Default" comment="" />
     <ignored path="cacciatorre-QR.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +23,8 @@
       <file leaf-file-name="CMS.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+            <state relative-caret-position="270">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -380,8 +376,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+        <state relative-caret-position="270">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
