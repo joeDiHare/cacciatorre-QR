@@ -23,7 +23,8 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
                  dataLog.Next_clue = 'unknown';
                  dataLog.Next_clue_id = 'unknown';
                }
-  console.log(dataLog)
+  // console.log(dataLog)
+
   // // Get IP
   // $.getJSON('//api.ipify.org?format=jsonp&callback=?',
   //     dataLog,
@@ -75,14 +76,14 @@ function updateLog(used_help, used_solution, solved, incorrect_place, incorrect_
       dataLog['longitude']= 0;
       dataLog['accuracy'] = 0;
     }
-    console.log(dataLog)
+    // console.log(dataLog)
     $.ajax({
       url: sheetsuUrlLog,
       //  headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
       data: dataLog,
       dataType: 'json',
       type: 'POST',
-      success: function(datam) { console.log(datam);},
+      // success: function(datam) { console.log(datam);},
       error:   function(datam) { console.log(datam);} // handling error response
     });
   }
