@@ -13,8 +13,7 @@
   <div id="gamediv">
     <button id=buttongameUP class='btn'>SU</button>
     <button id=buttongameDW class='btn'>GIU</button>
-    <p>ACCELERATE button to stay in the air</p>
-    <p>How long can you stay alive?</p>
+    <p></p>
   </div>
 </div>
 <div class="oggetti">
@@ -301,13 +300,15 @@ if (match_results !== 'undefined' && match_results){
       if (prev_clue_completed || parseInt(match_results[6])==1) {
 
         // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
-        updateSheet('1');
+        // updateSheet('1');
 
         document.getElementById('loc_div').innerHTML =match_results[3];//'Posizione Attuale: 'adjustColumn()
         document.getElementById('team_div').innerHTML=match_results[2];//'Team: '+
         document.getElementById('clue').innerHTML='&ldquo;'+match_results[9]+'&rdquo;';
         document.getElementById('oggetto').innerHTML='OGGETTO: '+match_results[11];
-        if (true){
+        if (true){//match_results[6]==12
+          document.getElementById('clue').innerHTML="Fai almeno 100 punti per sbloccare l''indovinello finale";
+
           var gameid = document.getElementById('gamediv');
           gameid.style.display = "block";
 
@@ -355,11 +356,15 @@ if (match_results !== 'undefined' && match_results){
                       ctx.fillStyle = color;
                       ctx.fillRect(this.x, this.y, this.width, this.height);
                   }
+                  // if (this.score>100){
+                  //   document.getElementById('clue').innerHTML="Bravi, ecco l''indovinello: &ldquo;"+match_results[9]+'&rdquo;';
+                  // }
               }
               this.newPos = function() {
                   this.gravitySpeed += this.gravity;
                   this.x += this.speedX;
-                  this.y += this.speedY + this.gravitySpeed;
+                  // this.y += this.speedY + this.gravitySpeed;
+                  this.y = Math.max(0 ,this.y + this.speedY+ this.gravitySpeed);
                   this.hitBottom();
               }
               this.hitBottom = function() {
@@ -403,8 +408,8 @@ if (match_results !== 'undefined' && match_results){
                   minGap = 50;
                   maxGap = 200;
                   gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-                  myObstacles.push(new component(10, height, "green", x, 0));
-                  myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+                  myObstacles.push(new component(10, height, "black", x, 0));
+                  myObstacles.push(new component(10, x - height - gap, "black", x, height + gap));
               }
               for (i = 0; i < myObstacles.length; i += 1) {
                   myObstacles[i].x += -1;
@@ -414,6 +419,9 @@ if (match_results !== 'undefined' && match_results){
               myScore.update();
               myGamePiece.newPos();
               myGamePiece.update();
+              if (myGameArea.score>100){
+                document.getElementById('clue').innerHTML="Bravi, ecco l''indovinello: &ldquo;"+match_results[9]+'&rdquo;';
+              }
           }
 
           function everyinterval(n) {
@@ -423,17 +431,13 @@ if (match_results !== 'undefined' && match_results){
           startGame();
           var btn_gameUP  = document.getElementById("buttongameUP"); // Get the button that opens the modal
           var btn_gameDW  = document.getElementById("buttongameDW"); // Get the button that opens the modal
-          btn_gameUP.onclick   = function(){myGamePiece.gravity = 0.1;}
-          btn_gameUP.onmousedown = function(){myGamePiece.gravity = 0.1;}
-          btn_gameUP.onmouseup = function(){myGamePiece.gravity = 0;}
-          btn_gameDW.onclick   = function(){myGamePiece.gravity = -0.1;}
-          btn_gameDW.onmousedown = function(){myGamePiece.gravity = -0.1;}
-          btn_gameDW.onmouseup = function(){myGamePiece.gravity = 0;}
-
-          if (myScore>500){
-          document.getElementById('clue').innerHTML="hai vinto!"
-        }
-
+          var acc         = 0.03
+          btn_gameUP.onclick   = function(){myGamePiece.gravity =   -acc;}
+          btn_gameUP.onmousedown = function(){acc=acc-0.01; myGamePiece.gravity = -acc;}
+          btn_gameUP.onmouseup = function(){acc=0.03; myGamePiece.gravity =   0;}
+          btn_gameDW.onclick   = function(){myGamePiece.gravity =   acc;}
+          btn_gameDW.onmousedown = function(){acc=acc+0.01; myGamePiece.gravity = acc;}
+          btn_gameDW.onmouseup = function(){acc=0.03; myGamePiece.gravity =   0;}
         }
 
         // make AIUTI buttons visible and implement logic
@@ -469,17 +473,17 @@ if (match_results !== 'undefined' && match_results){
 
       } else {
         document.getElementById('clue').innerHTML="POSTO SBAGLIATO! <br /> Questo luogo non e' la soluzione all'indovinello precedente.";
-        updateLog(0,0,0,1,0); // log: incorrect_place
+        // updateLog(0,0,0,1,0); // log: incorrect_place
 
       }
 
-      makeChart();
+      // makeChart();
       // make timeout clock visible after charts
       setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+600);
       },
     error:   function(data) {
       document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
-      updateLog(0,0,0,0,1); // log: incorrect_place
+      // updateLog(0,0,0,0,1); // log: incorrect_place
 
       console.log('error: '+data);
       } // handling error response
@@ -487,7 +491,7 @@ if (match_results !== 'undefined' && match_results){
 }else{
     document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";
     makeChart();
-    updateLog(0,0,0,0,1); // log: incorrect_place
+    // updateLog(0,0,0,0,1); // log: incorrect_place
 
     // make timeout clock visible after charts
     setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+300);
