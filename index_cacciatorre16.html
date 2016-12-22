@@ -51,8 +51,6 @@
     </div>
   </div>
 </div>
-<!-- <p>Leaderboard</p> -->
-<div id="chart-container"></div>
 <!-- <p>remaning time:</p> -->
 <div id="clockdiv">
   <div>
@@ -68,6 +66,8 @@
     <div class="smalltext">&nbsp;Seconds&nbsp;</div>
   </div>
 </div>
+<!-- <p>Leaderboard</p> -->
+<div id="chart-container"></div>
 
 
 <!--  STYLE  -->
@@ -302,8 +302,13 @@ if (match_results !== 'undefined' && match_results){
         btn_helpme.onclick = function() {
           modalHelpme.style.display = "block";
           btn_helpme.style.backgroundColor = "#000"
-          document.getElementById("modalHelpme-body").innerHTML =
+          if(true){
+            document.getElementById("modalHelpme-body").innerHTML =
                          '<br />'+match_results[10]+'<br />';//adjustColumn()
+          }else{
+            document.getElementById("modalHelpme-body").innerHTML =
+                         '<br />'+'Assenza di segnale, riprovare!<br />(punti non scalati)'+'<br />';//adjustColumn()
+          }
           notifyUseOfHelp('HelpMe');
           }
         span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
@@ -332,9 +337,10 @@ if (match_results !== 'undefined' && match_results){
 
       }
 
+      clockdiv.style.display = "block";
       makeChart();
       // make timeout clock visible after charts
-      setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+600);
+      // setTimeout(function() { clockdiv.style.display = "block"; }, timeout_chart+600);
       },
     error:   function(data) {
       document.getElementById('clue').innerHTML="Password non riconosciuta."+ "<br />" + "<a href='javascript:window.location.href=window.location.href'>Riprovare</a>.";

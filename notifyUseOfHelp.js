@@ -6,7 +6,7 @@ function notifyUseOfHelp(help_type){
    team_name: match_results[2],
    [help_type+'_'+match_results[6]]: "1"
    };
-  console.log(help_type+'_'+match_results[6]);
+  // console.log(help_type+'_'+match_results[6]);
    $.ajax({
      url: sheetsuUrl+'/team_name/'+match_results[2],
     //  headers: {"Authorization": "Basic " + btoa(API_KEY + ":" + API_SECRET)},
