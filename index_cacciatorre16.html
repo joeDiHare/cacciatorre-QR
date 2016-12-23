@@ -301,16 +301,17 @@ if (match_results !== 'undefined' && match_results){
         var span        = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
         btn_helpme.onclick = function() {
           modalHelpme.style.display = "block";
-          btn_helpme.style.backgroundColor = "#000"
-          if(true){
+          var online = navigator.onLine; // check there is internet
+          if(online){
             document.getElementById("modalHelpme-body").innerHTML =
                          '<br />'+match_results[10]+'<br />';//adjustColumn()
+                         btn_helpme.style.backgroundColor = "#000"
+                         notifyUseOfHelp('HelpMe');
           }else{
             document.getElementById("modalHelpme-body").innerHTML =
                          '<br />'+'Assenza di segnale, riprovare!<br />(punti non scalati)'+'<br />';//adjustColumn()
           }
-          notifyUseOfHelp('HelpMe');
-          }
+        }
         span.onclick = function() { modalHelpme.style.display = "none"; }// When the user clicks on <span> (x), close the modal
         window.onclick = function(event) { if (event.target == modalHelpme) { modalHelpme.style.display = "none";} }
         // repeat for other button ('solution')
@@ -319,11 +320,17 @@ if (match_results !== 'undefined' && match_results){
         var span2         = document.getElementsByClassName("close")[1];
         btn_solution.onclick = function() {
           modalSolution.style.display = "block";
-          btn_solution.style.backgroundColor = "#000"
-          document.getElementById("modalSolution-body").innerHTML =
-                          '<br />'+match_results[5]+'<br />';//adjustColumn()
-          notifyUseOfHelp('Solution');
+          var online = navigator.onLine; // check there is internet
+          if(online){
+            document.getElementById("modalSolution-body").innerHTML =
+                            '<br />'+match_results[5]+'<br />';//adjustColumn()
+                         btn_solution.style.backgroundColor = "#000"
+                         notifyUseOfHelp('HelpMe');
+          }else{
+            document.getElementById("modalSolution-body").innerHTML =
+                         '<br />'+'Assenza di segnale, riprovare!<br />(punti non scalati)'+'<br />';//adjustColumn()
           }
+        }
         span2.onclick = function() { modalSolution.style.display = "none"; }
         window.onclick = function(event) {if (event.target == modalSolution) { modalSolution.style.display = "none";}}
         // make buttons visible

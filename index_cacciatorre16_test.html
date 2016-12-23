@@ -277,10 +277,10 @@ if (match_results !== 'undefined' && match_results){
     success: function(data) { //wait for a response before continuing
       // prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[6])-1).toString()];
       prev_clue_completed = '1'==data[0]["indizio_"+(parseInt(match_results[7])-1).toString()];
-      console.log(prev_clue_completed);
-      console.log(parseInt(match_results[7])==1);
-      console.log(parseInt(match_results[7]));
-      console.log(prev_clue_completed || parseInt(match_results[7])==1);
+      // console.log(prev_clue_completed);
+      // console.log(parseInt(match_results[7])==1);
+      // console.log(parseInt(match_results[7]));
+      // console.log(prev_clue_completed || parseInt(match_results[7])==1);
       if (prev_clue_completed || parseInt(match_results[7])==1) {
 
         // // UPDATE SPREADSHEET ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~ ~~
