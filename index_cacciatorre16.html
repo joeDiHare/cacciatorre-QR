@@ -26,7 +26,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">×</span>
-      <h2>Aiuto: HELP ME</h2>
+      <h2>Aiutino</h2>
     </div>
     <div id="modalHelpme-body" class="modal-body">
       <p>help</p>
@@ -41,7 +41,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">×</span>
-      <h2>Aiuto: SOLUTION</h2>
+      <h2>Soluzione</h2>
     </div>
     <div id="modalSolution-body" class="modal-body">
       <p>solution</p>
@@ -325,7 +325,7 @@ if (match_results !== 'undefined' && match_results){
             document.getElementById("modalSolution-body").innerHTML =
                             '<br />'+match_results[5]+'<br />';//adjustColumn()
                          btn_solution.style.backgroundColor = "#000"
-                         notifyUseOfHelp('HelpMe');
+                         notifyUseOfHelp('Solution');
           }else{
             document.getElementById("modalSolution-body").innerHTML =
                          '<br />'+'Assenza di segnale, riprovare!<br />(punti non scalati)'+'<br />';//adjustColumn()
